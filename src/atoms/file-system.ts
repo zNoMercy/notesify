@@ -10,7 +10,6 @@ import { eq, isNull } from "drizzle-orm";
 import { atom } from "jotai";
 
 export const fileSystemOpenAtom = atom<boolean>(false);
-export const fileSystemSizeAtom = atomWithStorage("file-system-size", 20);
 export const draggingItemIdAtom = atom<string | number>();
 
 export const fileAtomFamily = atomFamily((id: string) =>

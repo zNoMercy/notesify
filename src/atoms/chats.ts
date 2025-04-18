@@ -65,5 +65,3 @@ export const withThinkingAtom = atomWithStorage<boolean>(
   "with-thinking",
   false
 );
-
-export const chatsSizeAtom = atomWithStorage("chats-size", 40);

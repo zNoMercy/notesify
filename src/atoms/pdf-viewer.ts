@@ -6,7 +6,6 @@ import { PDFViewer } from "pdfjs-dist/types/web/pdf_rendering_queue";
 import { TextSelection } from "@/lib/types";
 
 export const pdfViewerOpenAtom = atom<boolean>(true);
-export const pdfSizeAtom = atomWithStorage("pdf-size", 40);
 
 export const documentAtomFamily = atomFamily((pdfId?: string) =>
   atom<PDFDocumentProxy>()

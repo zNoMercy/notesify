@@ -1,7 +1,7 @@
 import { createFileRoute, Navigate } from "@tanstack/react-router";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtomValue } from "jotai";
 
-import { pdfViewerOpenAtom, pdfSizeAtom } from "@/atoms/pdf-viewer";
+import { pdfViewerOpenAtom } from "@/atoms/pdf-viewer";
 import { PlateEditor } from "@/components/editor/plate-editor";
 import { Chat } from "@/components/chat/chat";
 import { PdfCommandDialog } from "@/components/pdf/dialog/command-dialog";
@@ -21,9 +21,9 @@ import { PdfViewerDndProvider } from "@/components/dnd/pdf-viewer-dnd-context";
 import { isTauri } from "@/lib/tauri";
 import { PdfToolbar } from "@/components/viewer/toolbars/pdf-toolbar";
 import { Header } from "@/components/viewer/header";
-import { notesOpenAtom, notesSizeAtom } from "@/atoms/notes";
-import { chatsOpenAtom, chatsSizeAtom } from "@/atoms/chats";
-import { fileSystemOpenAtom, fileSystemSizeAtom } from "@/atoms/file-system";
+import { notesOpenAtom } from "@/atoms/notes";
+import { chatsOpenAtom } from "@/atoms/chats";
+import { fileSystemOpenAtom } from "@/atoms/file-system";
 
 const viewerSearchSchema = z.object({
   // id: z.union([z.string().array(), z.string()]),
@@ -55,11 +55,6 @@ const Viewer = () => {
   const pdfViewerOpen = useAtomValue(pdfViewerOpenAtom);
   const notesOpen = useAtomValue(notesOpenAtom);
 
-  const [fileSystemSize, setFileSystemSize] = useAtom(fileSystemSizeAtom);
-  const [pdfSize, setPdfSize] = useAtom(pdfSizeAtom);
-  const [chatsSize, setChatsSize] = useAtom(chatsSizeAtom);
-  const [notesSize, setNotesSize] = useAtom(notesSizeAtom);
-
   // const draggingItemId = useAtomValue(draggingItemIdAtom);
 
   if (!pdfId) {
@@ -72,17 +67,13 @@ const Viewer = () => {
     <div className="flex flex-col h-dvh">
       <Header pdfId={pdfId} />
       <ResizablePanelGroup
+        autoSaveId="viewer"
         direction="horizontal"
         className="flex-1 overflow-hidden"
       >
         {fileSystemOpen && (
           <>
-            <ResizablePanel
-              minSize={15}
-              defaultSize={fileSystemSize}
-              onResize={setFileSystemSize}
-              order={1}
-            >
+            <ResizablePanel minSize={15} order={1}>
               <FileSystemSidebar withUpload />
               {/* <FileSystemSidebar withUpload draggingItemId={draggingItemId} /> */}
             </ResizablePanel>
@@ -92,12 +83,7 @@ const Viewer = () => {
 
         {notesOpen && notesId && (
           <>
-            <ResizablePanel
-              minSize={25}
-              defaultSize={notesSize}
-              onResize={setNotesSize}
-              order={2}
-            >
+            <ResizablePanel minSize={25} order={2}>
               <PlateEditor notesId={notesId} />
             </ResizablePanel>
             <ResizableHandle withHandle />
@@ -106,13 +92,7 @@ const Viewer = () => {
 
         {pdfViewerOpen && pdfId && (
           <>
-            <ResizablePanel
-              minSize={25}
-              className="relative"
-              defaultSize={pdfSize}
-              onResize={setPdfSize}
-              order={3}
-            >
+            <ResizablePanel minSize={25} className="relative" order={3}>
               <Suspense>
                 <div className="flex flex-col h-full">
                   <PdfToolbar pdfId={pdfId} />
@@ -129,16 +109,9 @@ const Viewer = () => {
         )}
 
         {chatsOpen && (
-          <>
-            <ResizablePanel
-              minSize={25}
-              defaultSize={chatsSize}
-              onResize={setChatsSize}
-              order={4}
-            >
-              <Chat />
-            </ResizablePanel>
-          </>
+          <ResizablePanel minSize={25} order={4}>
+            <Chat />
+          </ResizablePanel>
         )}
       </ResizablePanelGroup>
 

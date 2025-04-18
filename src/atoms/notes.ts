@@ -37,7 +37,6 @@ export const notesAtomFamilyLoadable = (id: string) =>
   loadable(notesAtomFamily(id));
 
 export const notesOpenAtom = atom<boolean>(false);
-export const notesSizeAtom = atomWithStorage("notes-size", 40);
 
 export const generatingNotesAtom = atomFamily((notesId?: string) =>
   atom<AbortController>()
