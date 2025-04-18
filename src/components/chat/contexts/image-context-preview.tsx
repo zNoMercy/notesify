@@ -1,0 +1,67 @@
+import { useSetAtom } from "jotai";
+import { CgClose } from "react-icons/cg";
+import { VscGoToFile } from "react-icons/vsc";
+
+import { jumpToContextAtom, removeContextAtom } from "@/actions/contexts";
+import { activePreviewContextAtom, Context } from "@/atoms/contexts";
+import { useAction } from "@/hooks/use-action";
+
+interface ImageContextPreviewProps {
+  context: Context;
+  removable?: boolean;
+  onJump: () => void;
+  onPreview: () => void;
+  onRemove: () => void;
+}
+
+const ImageContextPreview = ({
+  context,
+  removable,
+  onJump,
+  onPreview,
+  onRemove,
+}: ImageContextPreviewProps) => {
+  return (
+    <div className="relative">
+      <img
+        src={context.content}
+        alt="Context"
+        className="border rounded w-full aspect-square object-contain cursor-pointer"
+        onClick={onPreview}
+      />
+      <div className="absolute top-2 right-2 flex flex-row gap-1 opacity-50">
+        <VscGoToFile className="cursor-pointer" onClick={onJump} />
+        {removable && <CgClose className="cursor-pointer" onClick={onRemove} />}
+      </div>
+    </div>
+  );
+};
+
+export const ImageContextsPreview = ({
+  contexts,
+  removable,
+}: {
+  contexts?: Context[];
+  removable?: boolean;
+}) => {
+  const [jumpToContext] = useAction(jumpToContextAtom);
+  const [removeContext] = useAction(removeContextAtom);
+  const setActivePreviewContext = useSetAtom(activePreviewContextAtom);
+  if (!contexts || contexts.length === 0) return null;
+  return (
+    <div className="grid grid-cols-4 gap-2">
+      {contexts
+        .filter((context) => context.type === "area" || context.type === "page")
+        .map((context: Context) => (
+          <ImageContextPreview
+            key={context.id}
+            context={context}
+            removable={removable}
+            onJump={() => jumpToContext(context)}
+            onPreview={() => setActivePreviewContext(context)}
+            onRemove={() => removeContext(context.id)}
+          />
+        ))}
+    </div>
+  );
+};

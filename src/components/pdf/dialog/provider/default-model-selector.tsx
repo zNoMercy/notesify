@@ -1,0 +1,30 @@
+import { Label } from "@/components/ui/label";
+import { ModelType, selectedModelsAtom } from "@/atoms/providers";
+import { useAtom } from "jotai";
+import { ModelSelector } from "../../model-selector";
+
+export const DefaultModelSelector = ({
+  modelType,
+}: {
+  modelType: ModelType;
+}) => {
+  const [selectedModels, setSelectedModels] = useAtom(selectedModelsAtom);
+  return (
+    <div className="flex items-center justify-between">
+      <Label htmlFor="notes-model">{modelType}</Label>
+      <div className="w-2/3">
+        <ModelSelector
+          variant="select"
+          modelType={modelType}
+          model={selectedModels[modelType]}
+          onChange={(model) =>
+            setSelectedModels({
+              ...selectedModels,
+              [modelType]: model,
+            })
+          }
+        />
+      </div>
+    </div>
+  );
+};
