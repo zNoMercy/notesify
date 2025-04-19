@@ -42,8 +42,8 @@ export const indexPages = async ({
     const batchResults = await Promise.all(batchPromises);
     results.push(...batchResults.flat());
   }
-  console.log("All indexed pages", results.flat());
-  return results.flat();
+  console.log("All indexed pages", results);
+  return results;
 };
 
 const _indexPages = async (model: LanguageModelV1, pages: ParsedPDF) => {
@@ -58,14 +58,12 @@ ${pages.map((page) => `PAGE ${page.page}:\n${page.text}\n`).join("\n\n")}`;
   const res = await generateObject({
     model,
     output: "array",
-    schema: z.array(
-      z.object({
-        page: z.number(),
-        summary: z.string(),
-      })
-    ),
+    schema: z.object({
+      page: z.number(),
+      summary: z.string(),
+    }),
     prompt,
-    maxTokens: 1024,
+    maxTokens: 4096,
   });
   console.log("Indexed pages", res.object);
   return res.object;
