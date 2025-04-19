@@ -54,7 +54,7 @@ const initLocalDB = async () => {
 const initWebDB = async () => {
   console.log("Creating web sqlite database");
   const SQL = await initSqlJs({
-    locateFile: (file) => `https://sql.js.org/dist/${file}`,
+    locateFile: (file) => `/sql-wasm.wasm`,
   });
 
   // Create an in-memory SQLite database instance
