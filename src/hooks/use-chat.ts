@@ -1,7 +1,4 @@
-import {
-  getOpenedPdfsMetadataAtom,
-  searchTextsAtom,
-} from "@/actions/pdf-viewer";
+import { getOpenedPdfsMetadataAtom } from "@/actions/pdf-viewer";
 import { withThinkingAtom } from "@/atoms/chats";
 import { activeContextsAtom } from "@/atoms/contexts";
 import { messagesAtomFamilyLoadable } from "@/atoms/messages";
@@ -19,6 +16,12 @@ import { getSelectedModelAtom } from "@/actions/providers";
 import { useAction } from "./use-action";
 import { toast } from "sonner";
 import { getPdftextAtom } from "@/actions/pdf-parsing";
+import { searchPagesAtom } from "@/actions/pdf-indexing";
+import {
+  CalculateParameters,
+  GetPDFPageTextParameters,
+  SearchPagesParameters,
+} from "@/lib/llm-tools";
 
 export const useChat = ({
   chatId,
@@ -32,11 +35,14 @@ export const useChat = ({
   const initialMessages = useLoadable(messagesAtomFamilyLoadable(chatId));
   const withThinking = useAtomValue(withThinkingAtom);
   const setActiveContexts = useSetAtom(activeContextsAtom);
-  const [getPageText] = useAction(getPdftextAtom);
-  const [searchTexts] = useAction(searchTextsAtom);
   const [getOpenedPdfsMetadata] = useAction(getOpenedPdfsMetadataAtom);
   const [createChatStream] = useAction(createChatStreamAtom);
   const [saveMessage] = useAction(saveMessageAtom);
+
+  // For tool calls
+  const [getPageText] = useAction(getPdftextAtom);
+  const [searchPages] = useAction(searchPagesAtom);
+  // const [searchTexts] = useAction(searchTextsAtom);
 
   return useBaseChat({
     id: chatId,
@@ -44,37 +50,37 @@ export const useChat = ({
     maxSteps: 10,
     initialMessages: initialMessages as Message[],
     onToolCall: async ({ toolCall }) => {
+      console.log("Executing tool", toolCall.toolName, toolCall.args);
+
       if (toolCall.toolName === "calculate") {
-        const { expression } = toolCall.args as { expression: string };
-        console.log("Executing calculate tool", expression);
-        const res = evaluate(expression);
-        console.log("calculate result", res);
-        return res;
-      } else if (toolCall.toolName === "getPDFPageText") {
-        const { pdfId, startPage, endPage } = toolCall.args as {
-          pdfId: string;
-          startPage: number;
-          endPage: number;
-        };
-        console.log("Executing getPDFPageText tool", startPage, endPage);
+        const { expression } = toolCall.args as CalculateParameters;
+        return evaluate(expression);
+      }
+
+      if (toolCall.toolName === "getPDFPageText") {
+        const { pdfId, startPage, endPage } =
+          toolCall.args as GetPDFPageTextParameters;
+
         const text = await getPageText({
           pdfId,
           startPage,
           endPage,
         });
-        console.log("getPDFPageText result", text);
+        console.log("Get page text result", text);
         return text || "No text found";
-      } else if (toolCall.toolName === "searchText") {
-        const { pdfId, texts } = toolCall.args as {
-          pdfId: string;
-          texts: string[];
-        };
-
-        console.log("Executing searchText tool", texts);
-        const pageText = await searchTexts(pdfId, texts);
-        console.log("searchText result", pageText);
-        return pageText || "No text found";
       }
+
+      if (toolCall.toolName === "searchPages") {
+        const { pdfId, query } = toolCall.args as SearchPagesParameters;
+        const result = await searchPages(pdfId, query);
+        return result;
+      }
+
+      // if (toolCall.toolName === "searchText") {
+      //   const { pdfId, texts } = toolCall.args as SearchTextParameters;
+      //   const pageText = await searchTexts(pdfId, texts);
+      //   return pageText || "No text found";
+      // }
     },
     fetch: async (input, init) => {
       const openedPdfs = await getOpenedPdfsMetadata();

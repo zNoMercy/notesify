@@ -16,6 +16,15 @@ export const tools = {
       endPage: z.number().describe("The end page number"),
     }),
   }),
+  searchPages: tool({
+    description: "Search relevant PDF pages for the given query",
+    parameters: z.object({
+      pdfId: z.string().describe("The PDF ID"),
+      query: z
+        .string()
+        .describe("The query to search for, in a short sentence"),
+    }),
+  }),
   // searchText: tool({
   //   description: "Search keywords in a PDF and return corresponding page texts",
   //   parameters: z.object({
@@ -29,3 +38,11 @@ export const tools = {
   //   }),
   // }),
 };
+
+export type CalculateParameters = z.infer<typeof tools.calculate.parameters>;
+export type GetPDFPageTextParameters = z.infer<
+  typeof tools.getPDFPageText.parameters
+>;
+export type SearchPagesParameters = z.infer<
+  typeof tools.searchPages.parameters
+>;

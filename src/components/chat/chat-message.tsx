@@ -5,6 +5,7 @@ import { GetPageTextTool } from "./tools/get-page-text-tool";
 import { SearchTextTool } from "./tools/search-text-tool";
 import { CalculateTool } from "./tools/calculate-tool";
 import MarkdownRenderer from "@/components/markdown/markdown-renderer";
+import { SearchPagesTool } from "./tools/search-text-tool copy";
 
 dotPulse.register();
 ring2.register();
@@ -26,6 +27,8 @@ export const ChatMessage = ({
       return <SearchTextTool tool={tool} />;
     } else if (tool.toolName === "calculate") {
       return <CalculateTool tool={tool} />;
+    } else if (tool.toolName === "searchPages") {
+      return <SearchPagesTool tool={tool} />;
     }
   };
   return (

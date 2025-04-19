@@ -73,9 +73,10 @@ export const getPdftextAtom = atom(
     set,
     {
       pdfId,
+      pages,
       startPage,
       endPage,
-    }: { pdfId: string; startPage?: number; endPage?: number }
+    }: { pdfId: string; pages?: number[]; startPage?: number; endPage?: number }
   ): Promise<string> => {
     const parsedPdf = await set(parsePdfAtom, { pdfId });
     return parsedPdf
@@ -83,6 +84,7 @@ export const getPdftextAtom = atom(
         (p) =>
           p.page >= (startPage ?? 1) && p.page <= (endPage ?? parsedPdf.length)
       )
+      .filter((p) => !pages || pages.includes(p.page))
       .map((p) => `<page_${p.page}>\n${p.text}\n</page_${p.page}>`)
       .join("\n\n");
   }
