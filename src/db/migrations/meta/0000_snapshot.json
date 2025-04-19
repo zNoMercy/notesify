@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "d395b5b5-56d6-4718-9943-d9b04a9ebf34",
+  "id": "178ef4cd-7e71-4f76-bccc-2e5549696602",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "annotations": {
@@ -468,6 +468,79 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
+    "pdf_indexing": {
+      "name": "pdf_indexing",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "pdf_id": {
+          "name": "pdf_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "model": {
+          "name": "model",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "summary": {
+          "name": "summary",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "level": {
+          "name": "level",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "start_page": {
+          "name": "start_page",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "end_page": {
+          "name": "end_page",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "pdf_indexing_pdf_id_pdfs_id_fk": {
+          "name": "pdf_indexing_pdf_id_pdfs_id_fk",
+          "tableFrom": "pdf_indexing",
+          "tableTo": "pdfs",
+          "columnsFrom": [
+            "pdf_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "pdf_parsing": {
       "name": "pdf_parsing",
       "columns": {
@@ -503,7 +576,7 @@
           "name": "images",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "page": {

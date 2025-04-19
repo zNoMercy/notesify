@@ -84,7 +84,7 @@ const initWebDB = async () => {
         return { rows: result };
       }
     },
-    { logger: true, schema }
+    { logger: false, schema }
   );
 
   await migrate(db);

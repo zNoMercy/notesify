@@ -67,12 +67,23 @@ CREATE TABLE `notes` (
 );
 --> statement-breakpoint
 CREATE INDEX `notes_pdf_id_idx` ON `notes` (`pdf_id`);--> statement-breakpoint
+CREATE TABLE `pdf_indexing` (
+	`id` text PRIMARY KEY NOT NULL,
+	`pdf_id` text NOT NULL,
+	`model` text NOT NULL,
+	`summary` text NOT NULL,
+	`level` text NOT NULL,
+	`start_page` integer,
+	`end_page` integer,
+	FOREIGN KEY (`pdf_id`) REFERENCES `pdfs`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
 CREATE TABLE `pdf_parsing` (
 	`id` text PRIMARY KEY NOT NULL,
 	`pdf_id` text NOT NULL,
 	`model` text NOT NULL,
 	`text` text NOT NULL,
-	`images` text NOT NULL,
+	`images` text,
 	`page` integer NOT NULL,
 	FOREIGN KEY (`pdf_id`) REFERENCES `pdfs`(`id`) ON UPDATE no action ON DELETE cascade
 );

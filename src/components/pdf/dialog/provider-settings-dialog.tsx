@@ -25,14 +25,14 @@ export const PROVIDER_CONFIGS: ProviderConfig[] = [
     id: "openai",
     name: "OpenAI",
     icon: <OpenAI size={24} />,
-    tags: ["Chat"],
+    tags: ["Chat", "Indexing"],
     showBaseUrl: true,
   },
   {
     id: "mistral",
     name: "Mistral",
     icon: <Mistral.Color size={24} />,
-    tags: ["Chat", "Document Parser"],
+    tags: ["Chat", "Indexing", "Document Parser"],
     showBaseUrl: false,
   },
 ];
@@ -95,6 +95,7 @@ export const ProviderSettingsDialog = () => {
             <h3 className="text-lg font-medium mb-3">Default Models</h3>
             <div className="border rounded-md p-3 space-y-4">
               <DefaultModelSelector modelType="Chat" />
+              <DefaultModelSelector modelType="Indexing" />
               <DefaultModelSelector modelType="Document Parser" />
             </div>
           </div>

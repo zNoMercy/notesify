@@ -5,7 +5,7 @@ import { createProviderRegistry, ProviderRegistryProvider } from "ai";
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
-export type ModelType = "Chat" | "Document Parser";
+export type ModelType = "Chat" | "Document Parser" | "Indexing";
 export type Model = {
   id: string;
   name: string;
@@ -40,6 +40,7 @@ export const selectedModelsAtom = atomWithStorage<
 >("selected-models", {
   Chat: undefined,
   "Document Parser": undefined,
+  Indexing: undefined,
 });
 
 // Registry containing all configured model providers
