@@ -8,7 +8,7 @@ export const pdfParsingTable = sqliteTable("pdf_parsing", {
     .references(() => pdfsTable.id, { onDelete: "cascade" }),
   model: text("model").notNull(),
   text: text("text").notNull(),
-  images: text("images", { mode: "json" }).$type<string[]>().notNull(),
+  images: text("images", { mode: "json" }).$type<string[]>(),
   page: integer("page").notNull(),
 });
 

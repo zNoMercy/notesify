@@ -1,64 +1,89 @@
 import { pdfDataAtomFamily } from "@/atoms/pdf";
 import { pdfParsingAtomFamily } from "@/atoms/pdf-parsing";
-import { configuredProvidersAtom } from "@/atoms/providers";
-import { Mistral } from "@mistralai/mistralai";
+import { documentAtomFamily } from "@/atoms/pdf-viewer";
+import {
+  configuredProvidersAtom,
+  openSettingsDialogAtom,
+} from "@/atoms/providers";
+import { ActionError } from "@/hooks/use-action";
+import { ParsedPDF, parsePdf, parsePdfWithOcr } from "@/lib/pdf/parsing";
 import { atom } from "jotai";
-import { toast } from "sonner";
 
-export const parsePdfAtom = atom(null, async (get, set, pdfId: string) => {
-  const parsedPdf = await get(pdfParsingAtomFamily(pdfId));
-  if (parsedPdf && parsedPdf.length > 0) {
-    console.log("Cached parsed PDF", parsedPdf);
-    return parsedPdf;
+export const parsePdfAtom = atom(
+  null,
+  async (
+    get,
+    set,
+    {
+      pdfId,
+      method,
+    }: {
+      pdfId: string;
+      method?: "ocr" | "pdfjs";
+    }
+  ): Promise<ParsedPDF> => {
+    const parsedPdf = await get(pdfParsingAtomFamily(pdfId));
+    if (parsedPdf && parsedPdf.length > 0) {
+      console.log("Cached parsed PDF", parsedPdf);
+      return parsedPdf;
+    }
+
+    const apiKey = get(configuredProvidersAtom).find(
+      (p) => p.type === "mistral"
+    )?.settings.apiKey;
+    // Default to ocr if no method is specified and API key is available
+    method = method || (apiKey ? "ocr" : "pdfjs");
+    console.log("Parsing PDF: ", method);
+
+    if (method === "pdfjs") {
+      const pdfDocument = get(documentAtomFamily(pdfId));
+      if (!pdfDocument) {
+        throw new ActionError("Failed to get PDF");
+      }
+
+      const result = await parsePdf({ pdfId, pdfDocument });
+      set(pdfParsingAtomFamily(pdfId), result);
+      return result;
+    } else {
+      const pdf = await get(pdfDataAtomFamily(pdfId));
+      if (!pdf) {
+        throw new ActionError("PDF not found");
+      }
+
+      if (!apiKey) {
+        set(openSettingsDialogAtom, true);
+        throw new ActionError("Please configure the Mistral provider");
+      }
+
+      const result = await parsePdfWithOcr({
+        apiKey,
+        pdfId,
+        pdfData: pdf.data,
+      });
+      set(pdfParsingAtomFamily(pdfId), result);
+      return result;
+    }
   }
+);
 
-  const apiKey = get(configuredProvidersAtom).find((p) => p.type === "mistral")
-    ?.settings.apiKey;
-  if (!apiKey) {
-    toast.error("Please configure the Mistral provider");
-    return;
+export const getPdftextAtom = atom(
+  null,
+  async (
+    get,
+    set,
+    {
+      pdfId,
+      startPage,
+      endPage,
+    }: { pdfId: string; startPage?: number; endPage?: number }
+  ): Promise<string> => {
+    const parsedPdf = await set(parsePdfAtom, { pdfId });
+    return parsedPdf
+      .filter(
+        (p) =>
+          p.page >= (startPage ?? 1) && p.page <= (endPage ?? parsedPdf.length)
+      )
+      .map((p) => `<page_${p.page}>\n${p.text}\n</page_${p.page}>`)
+      .join("\n\n");
   }
-
-  const client = new Mistral({ apiKey });
-
-  const pdf = await get(pdfDataAtomFamily(pdfId));
-  if (!pdf) {
-    toast.error("PDF not found");
-    return;
-  }
-
-  const uploadedPdf = await client.files.upload({
-    file: {
-      fileName: `${pdfId}.pdf`,
-      content: pdf.data,
-    },
-    purpose: "ocr",
-  });
-  console.log("uploadedPdf", uploadedPdf);
-  const signedUrl = await client.files.getSignedUrl({
-    fileId: uploadedPdf.id,
-  });
-  console.log("signedUrl", signedUrl);
-  const ocrResponse = await client.ocr.process({
-    model: "mistral-ocr-latest",
-    document: {
-      type: "document_url",
-      documentUrl: signedUrl.url,
-    },
-    includeImageBase64: true,
-  });
-
-  const result = ocrResponse.pages.map((page) => ({
-    id: `${pdfId}-${page.index}`,
-    pdfId,
-    model: "mistral-ocr-latest",
-    text: page.markdown,
-    images: page.images
-      .map((image) => image.imageBase64)
-      .filter((image) => image !== null && image !== undefined),
-    page: page.index,
-  }));
-
-  set(pdfParsingAtomFamily(pdfId), result);
-  return result;
-});
+);

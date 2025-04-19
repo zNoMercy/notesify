@@ -71,57 +71,6 @@ export const updatePdfAtom = atom(
   }
 );
 
-export const getPageTextAtom = atom(
-  null,
-  async (
-    get,
-    set,
-    {
-      pdfId,
-      startPage = 1,
-      endPage,
-      maxChars,
-    }: {
-      pdfId: string;
-      startPage?: number;
-      endPage?: number;
-      maxChars?: number;
-    }
-  ) => {
-    const pdfDocument = get(documentAtomFamily(pdfId));
-    if (!pdfDocument) {
-      throw new ActionError("Failed to get PDF");
-    }
-
-    if (!endPage) {
-      endPage = pdfDocument.numPages;
-    }
-
-    if (startPage < 1 || endPage > pdfDocument.numPages) {
-      return {
-        text:
-          "Invalid page range. The valid range is 1 to " + pdfDocument.numPages,
-      };
-    }
-
-    let text = "";
-    let lastPage = 0;
-    for (let pageNum = startPage; pageNum <= endPage; pageNum++) {
-      const page = await pdfDocument.getPage(pageNum);
-      const textContent = await page.getTextContent();
-      const pageText = `<page_${pageNum}>\n${textContent.items
-        .map((item: any) => item.str)
-        .join(" ")}\n</page_${pageNum}>`;
-      if (maxChars && text.length + pageText.length > maxChars) {
-        break;
-      }
-      text += pageText;
-      lastPage = pageNum;
-    }
-    return { text, lastPage, docPage: pdfDocument.numPages };
-  }
-);
-
 export const searchTextsAtom = atom(
   null,
   async (get, set, pdfId: string, texts: string[], pageLimit: number = 5) => {

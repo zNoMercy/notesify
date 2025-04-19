@@ -1,7 +1,7 @@
 import { getPdfMetadataAtom, jumpToPageAtom } from "@/actions/pdf-viewer";
 import { Badge } from "@/components/badge";
 import { useAction } from "@/hooks/use-action";
-import { parsePageNumbers } from "@/lib/parsing";
+import { parsePageNumbers } from "@/lib/pdf/parsing";
 import { cn } from "@/lib/utils";
 import { ToolInvocation } from "ai";
 import { Check } from "lucide-react";

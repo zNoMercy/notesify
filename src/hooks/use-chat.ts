@@ -1,6 +1,5 @@
 import {
   getOpenedPdfsMetadataAtom,
-  getPageTextAtom,
   searchTextsAtom,
 } from "@/actions/pdf-viewer";
 import { withThinkingAtom } from "@/atoms/chats";
@@ -19,6 +18,7 @@ import { MessageDB } from "@/db/schema";
 import { getSelectedModelAtom } from "@/actions/providers";
 import { useAction } from "./use-action";
 import { toast } from "sonner";
+import { getPdftextAtom } from "@/actions/pdf-parsing";
 
 export const useChat = ({
   chatId,
@@ -32,7 +32,7 @@ export const useChat = ({
   const initialMessages = useLoadable(messagesAtomFamilyLoadable(chatId));
   const withThinking = useAtomValue(withThinkingAtom);
   const setActiveContexts = useSetAtom(activeContextsAtom);
-  const [getPageText] = useAction(getPageTextAtom);
+  const [getPageText] = useAction(getPdftextAtom);
   const [searchTexts] = useAction(searchTextsAtom);
   const [getOpenedPdfsMetadata] = useAction(getOpenedPdfsMetadataAtom);
   const [createChatStream] = useAction(createChatStreamAtom);
@@ -57,15 +57,13 @@ export const useChat = ({
           endPage: number;
         };
         console.log("Executing getPDFPageText tool", startPage, endPage);
-        const result = await getPageText({
+        const text = await getPageText({
           pdfId,
           startPage,
           endPage,
         });
-        if (!result) return;
-        const { text } = result;
         console.log("getPDFPageText result", text);
-        return text;
+        return text || "No text found";
       } else if (toolCall.toolName === "searchText") {
         const { pdfId, texts } = toolCall.args as {
           pdfId: string;
@@ -75,7 +73,7 @@ export const useChat = ({
         console.log("Executing searchText tool", texts);
         const pageText = await searchTexts(pdfId, texts);
         console.log("searchText result", pageText);
-        return pageText;
+        return pageText || "No text found";
       }
     },
     fetch: async (input, init) => {

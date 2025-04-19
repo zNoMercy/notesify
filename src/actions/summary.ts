@@ -1,6 +1,4 @@
 import { atom } from "jotai";
-import { getPageTextAtom } from "./pdf-viewer";
-import { toast } from "sonner";
 import { streamTextAtom } from "./ai";
 import { formatMessages, replaceImageReferences } from "@/lib/prompts/summary";
 import { generatingNotesAtom } from "@/atoms/notes";
@@ -10,35 +8,6 @@ import {
   QualityType,
 } from "@/components/plate-ui/custom/generate-notes-dialog";
 import { ActionError } from "@/hooks/use-action";
-
-export const getSummaryInputMessagesAtom = atom(
-  null,
-  async (get, set, pdfId: string, quality: QualityType, length: LengthType) => {
-    if (quality === "Standard") {
-      const { text, lastPage, docPage } = await set(getPageTextAtom, {
-        pdfId,
-        maxChars: 128000,
-      });
-      if (lastPage !== docPage) {
-        toast.info(
-          `The document is too long. Only pages up to page ${lastPage} are included in the summary.`
-        );
-      }
-      return { text, images: null, messages: formatMessages(text, length) };
-    } else {
-      const result = await set(parsePdfAtom, pdfId);
-      if (!result) return;
-
-      const text = result.map((r) => r.text).join("\n");
-      const images = result.map((r) => r.images).flat();
-      return {
-        text,
-        images,
-        messages: formatMessages(text, length, images),
-      };
-    }
-  }
-);
 
 export const generateSummaryAtom = atom(
   null,
@@ -59,17 +28,17 @@ export const generateSummaryAtom = atom(
       onUpdate?: (summaryPart: string) => void;
     }
   ) => {
-    const input = await set(
-      getSummaryInputMessagesAtom,
+    const parsedPdf = await set(parsePdfAtom, {
       pdfId,
-      quality,
-      length
-    );
-    if (!input) {
-      throw new ActionError("Failed to generate summary: No input");
-    }
+      method: quality === "Standard" ? "pdfjs" : "ocr",
+    });
 
-    const { images, messages } = input;
+    const text = parsedPdf.map((p) => p.text).join("\n");
+    const images = parsedPdf
+      .map((p) => p.images)
+      .flat()
+      .filter((img) => img !== null);
+    const messages = formatMessages(text, length, images);
 
     const abortSignal = new AbortController();
     set(generatingNotesAtom(notesId), abortSignal);
