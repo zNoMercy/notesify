@@ -5,7 +5,7 @@ import { highlightAtomFamily } from "@/atoms/highlights";
 import { pushActionAtom } from "./history";
 import { generateId } from "@/lib/id";
 import { Highlight } from "@/db/schema";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 
 export const addHighlightAtom = atom(
   null,

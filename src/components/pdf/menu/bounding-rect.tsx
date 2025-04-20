@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-import { useOnClickOutside } from "@/hooks/use-on-click-outside";
+import { useOnClickOutside } from "@/hooks/pdf/use-on-click-outside";
 import { toPercentageStyle } from "@/lib/pdf/position";
 import { calcBoundingRect } from "@/lib/pdf/rects";
 import { Rect } from "@/lib/types";

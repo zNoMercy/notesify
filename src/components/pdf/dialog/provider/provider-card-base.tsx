@@ -8,7 +8,7 @@ import { ProviderSettings } from "@/atoms/providers";
 import { verifySettingsAtom } from "@/actions/providers";
 import { ProviderConfig } from "../provider-settings-dialog";
 import { Pencil, Plus, Trash } from "lucide-react";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 const EditForm = ({
   providerConfig,

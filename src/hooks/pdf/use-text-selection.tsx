@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { getRectsFromRange } from "../lib/pdf/rects";
+import { getRectsFromRange } from "../../lib/pdf/rects";
 import { activeTextSelectionAtomFamily } from "@/atoms/pdf-viewer";
 import { useAtom } from "jotai";
 

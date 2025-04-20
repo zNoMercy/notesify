@@ -9,7 +9,7 @@ import { selectedHighlightColorAtom } from "@/atoms/highlight-options";
 import { TooltipButton } from "@/components/tooltip/tooltip-button";
 import { Separator } from "@/components/ui/separator";
 
-import { useTextSelection } from "../../../hooks/use-text-selection";
+import { useTextSelection } from "@/hooks/pdf/use-text-selection";
 import { HighlightOptions } from "./highlight-options";
 import { Menu } from "./menu";
 import { toast } from "sonner";

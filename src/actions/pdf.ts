@@ -24,7 +24,7 @@ import { save } from "@tauri-apps/plugin-dialog";
 import { isTauri } from "@/lib/tauri";
 import { writeFile } from "@tauri-apps/plugin-fs";
 import { toast } from "sonner";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 import { updatePdfAtom } from "./pdf-viewer";
 
 GlobalWorkerOptions.workerSrc = new URL(

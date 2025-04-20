@@ -17,7 +17,7 @@ import { HighlightOptions } from "./highlight-options";
 import { Menu } from "./menu";
 import { generateId } from "@/lib/id";
 import { chatsOpenAtom } from "@/atoms/chats";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 import { activeHighlightAtom } from "@/atoms/highlights";
 
 export const HighlightMenu = ({ pdfId }: { pdfId: string }) => {

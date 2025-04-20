@@ -23,7 +23,7 @@ import { deserializeMd, MarkdownPlugin } from "@udecode/plate-markdown";
 import { SkeletonPlugin } from "./skeleton";
 import { getSelectedModelAtom } from "@/actions/providers";
 import { useState } from "react";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 export const GeneratingButton = () => {
   const { getOption } = useEditorPlugin(StatesPlugin);

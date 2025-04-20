@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { useState } from "react";
 
 import { activeChatIdAtom } from "@/atoms/chats";
-import { useGroupedChats } from "@/hooks/pdf/use-grouped-chats";
+import { useGroupedChats } from "@/hooks/chat/use-grouped-chats";
 
 import { ThreadHeader } from "./thread-header";
 import { ThreadList } from "./thread-list";

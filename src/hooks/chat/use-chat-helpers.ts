@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { createNewChatAtom, updateChatTitleAtom } from "@/actions/chats";
 import { chatAtomFamilyLoadable } from "@/atoms/chats";
-import { useLoadable } from "../use-loadable";
+import { useLoadable } from "../state/use-loadable";
 import { Message } from "ai";
-import { useAction } from "../use-action";
+import { useAction } from "../state/use-action";
 
 export const useChatHelpers = ({
   chatId,

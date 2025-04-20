@@ -5,7 +5,7 @@ import { useChat as useBaseChat } from "@ai-sdk/react";
 
 import { streamText } from "ai";
 import { getSelectedModelAtom } from "@/actions/providers";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 export const useChat = () => {
   const [getModel] = useAction(getSelectedModelAtom);

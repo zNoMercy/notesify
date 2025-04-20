@@ -1,13 +1,12 @@
 import { atom } from "jotai";
 import { streamTextAtom } from "./ai";
-import { formatMessages, replaceImageReferences } from "@/lib/prompts/summary";
+import { formatMessages, replaceImageReferences } from "@/lib/note/summary";
 import { generatingNotesAtom } from "@/atoms/notes";
 import { parsePdfAtom } from "./pdf-parsing";
 import {
   LengthType,
   QualityType,
 } from "@/components/plate-ui/custom/generate-notes-dialog";
-import { ActionError } from "@/hooks/use-action";
 
 export const generateSummaryAtom = atom(
   null,
@@ -47,9 +46,6 @@ export const generateSummaryAtom = atom(
       abortSignal: abortSignal.signal,
       maxTokens: 8192,
     });
-    if (!res?.textStream) {
-      throw new ActionError("Failed to generate summary: No text stream");
-    }
 
     let summaryPart = "";
     let lastUpdateTime = Date.now();

@@ -3,17 +3,17 @@ import { withThinkingAtom } from "@/atoms/chats";
 import { activeContextsAtom } from "@/atoms/contexts";
 import { messagesAtomFamilyLoadable } from "@/atoms/messages";
 import { currentPageAtomFamily } from "@/atoms/pdf-viewer";
-import { buildMessages, buildSystemMessage } from "@/lib/pdf/chat";
+import { buildMessages, buildSystemMessage } from "@/lib/chat/chat";
 import { Message } from "ai";
 import { useChat as useBaseChat } from "@ai-sdk/react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { evaluate } from "mathjs";
 import { createChatStreamAtom } from "@/actions/ai";
-import { useLoadable } from "./use-loadable";
+import { useLoadable } from "../state/use-loadable";
 import { saveMessageAtom } from "@/actions/messages";
 import { MessageDB } from "@/db/schema";
 import { getSelectedModelAtom } from "@/actions/providers";
-import { useAction } from "./use-action";
+import { useAction } from "../state/use-action";
 import { toast } from "sonner";
 import { getPdftextAtom } from "@/actions/pdf-parsing";
 import { searchPagesAtom } from "@/actions/pdf-indexing";
@@ -21,7 +21,7 @@ import {
   CalculateParameters,
   GetPDFPageTextParameters,
   SearchPagesParameters,
-} from "@/lib/llm-tools";
+} from "@/lib/chat/tools";
 
 export const useChat = ({
   chatId,

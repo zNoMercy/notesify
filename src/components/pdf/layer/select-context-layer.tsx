@@ -3,7 +3,7 @@ import React, { useCallback, useRef, useState } from "react";
 
 import { addContextAtom } from "@/actions/contexts";
 import { selectContextModeAtom, viewerAtomFamily } from "@/atoms/pdf-viewer";
-import { captureScreenshot } from "@/lib/pdf";
+import { captureScreenshot } from "@/lib/pdf/canvas";
 import { useHotkeys } from "react-hotkeys-hook";
 import { generateId } from "@/lib/id";
 

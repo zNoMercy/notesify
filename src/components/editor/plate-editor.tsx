@@ -7,9 +7,9 @@ import { useEffect, useRef, useCallback, useState } from "react";
 import { updateNotesAtom } from "@/actions/notes";
 import { useDebouncedCallback } from "use-debounce";
 import { StatesPlugin } from "../plate-ui/custom/states";
-import { useLoadable } from "@/hooks/use-loadable";
+import { useLoadable } from "@/hooks/state/use-loadable";
 import { notesAtomFamilyLoadable } from "@/atoms/notes";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 export function PlateEditor({ notesId }: { notesId: string }) {
   const initedNotesId = useRef<string>("");

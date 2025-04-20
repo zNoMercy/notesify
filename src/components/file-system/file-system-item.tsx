@@ -16,7 +16,7 @@ import { Badge } from "@/components/badge";
 import { FileNode } from "@/db/schema";
 import { downloadPdfAtom } from "@/actions/pdf";
 import { useNavigatePdf } from "@/hooks/pdf/use-navigate-pdf";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 export interface FileSystemItemProps {
   node: FileNode;

@@ -5,7 +5,7 @@ import {
   Message,
   streamText,
 } from "ai";
-import { tools } from "@/lib/llm-tools";
+import { tools } from "@/lib/chat/tools";
 import { getSelectedModelAtom } from "./providers";
 
 export const streamTextAtom = atom(

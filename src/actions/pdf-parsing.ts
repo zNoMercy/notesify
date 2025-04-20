@@ -5,7 +5,7 @@ import {
   configuredProvidersAtom,
   openSettingsDialogAtom,
 } from "@/atoms/providers";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 import { ParsedPDF, parsePdf, parsePdfWithOcr } from "@/lib/pdf/parsing";
 import { atom } from "jotai";
 

@@ -4,7 +4,7 @@ import { activeChatIdAtom, chatAtomFamily, chatsAtom } from "@/atoms/chats";
 import { Message } from "ai";
 import { generateId } from "@/lib/id";
 import { generateTextAtom } from "./ai";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 
 export const updateChatTitleAtom = atom(
   null,

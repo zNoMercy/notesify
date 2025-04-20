@@ -6,7 +6,7 @@ import {
   viewerAtomFamily,
 } from "@/atoms/pdf-viewer";
 import { ScrollPosition } from "@/db/schema";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 import { atom } from "jotai";
 
 export type PDFMetadata = {

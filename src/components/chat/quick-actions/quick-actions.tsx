@@ -8,9 +8,9 @@ import {
 import { EditSuggestionDialog } from "../../pdf/dialog/edit-suggestion-dialog";
 import { activePdfIdAtom } from "@/atoms/pdf-viewer";
 import { activeChatIdAtom } from "@/atoms/chats";
-import { useChat } from "@/hooks/use-chat";
+import { useChat } from "@/hooks/chat/use-chat";
 import { getSelectedModelAtom } from "@/actions/providers";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 export const QuickActions = () => {
   const [getModel] = useAction(getSelectedModelAtom);

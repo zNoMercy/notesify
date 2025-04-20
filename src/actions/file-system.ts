@@ -5,7 +5,7 @@ import { RESET } from "jotai/utils";
 import { generateId } from "@/lib/id";
 import { FileNode } from "@/db/schema/files";
 import { toast } from "sonner";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 
 export const addFolderAtom = atom(
   null,

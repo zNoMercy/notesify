@@ -3,7 +3,7 @@ import { annotationsAtomFamily } from "../atoms/annotations";
 import { pushActionAtom } from "./history";
 import { generateId } from "@/lib/id";
 import { Annotation } from "@/db/schema";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 
 export const createAnnotationAtom = atom(
   null,

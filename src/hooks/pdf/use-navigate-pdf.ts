@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { useNavigate } from "@tanstack/react-router";
 import { notesOpenAtom } from "@/atoms/notes";
 import { getOrCreateNotesAtom } from "@/actions/notes";
-import { useAction } from "../use-action";
+import { useAction } from "../state/use-action";
 
 export const useNavigatePdf = () => {
   const navigate = useNavigate();

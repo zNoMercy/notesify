@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 import { toast } from "sonner";
 import { generateId } from "@/lib/id";
 import { useNavigatePdf } from "@/hooks/pdf/use-navigate-pdf";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 const FileSvgDraw = ({ thin }: { thin?: boolean }) => {
   return (

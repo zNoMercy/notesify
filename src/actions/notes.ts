@@ -5,7 +5,7 @@ import { generateId } from "ai";
 import { eq } from "drizzle-orm";
 import { atom } from "jotai";
 import { addFileAtom } from "./file-system";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 
 export const getNotesForPdfAtom = atom(
   null,

@@ -6,7 +6,7 @@ import { pdfIndexingAtomFamily } from "@/atoms/pdf-indexing";
 import { PDFIndexingLevel } from "@/db/schema";
 import { generateObject } from "ai";
 import { z } from "zod";
-import { ActionError } from "@/hooks/use-action";
+import { ActionError } from "@/hooks/state/use-action";
 
 export const indexPdfAtom = atom(null, async (get, set, pdfId: string) => {
   const indexedPdf = await get(pdfIndexingAtomFamily(pdfId));

@@ -2,7 +2,7 @@ import { CoreUserMessage, Message } from "ai";
 
 import { Context } from "@/atoms/contexts";
 import { PDFMetadata } from "@/actions/pdf-viewer";
-import { thinkingPrompt } from "../prompts";
+import { thinkingPrompt } from "../prompts/thinking";
 
 const buildTextContent = (content: string, contexts?: Context[]) => {
   const textContext = contexts

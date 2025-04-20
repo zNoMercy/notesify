@@ -10,8 +10,8 @@ import {
 } from "@/atoms/chats";
 import { TooltipButton } from "@/components/tooltip/tooltip-button";
 import { Card } from "@/components/ui/card";
-import { useChat } from "@/hooks/use-chat";
-import { useAction } from "@/hooks/use-action";
+import { useChat } from "@/hooks/chat/use-chat";
+import { useAction } from "@/hooks/state/use-action";
 
 export const ChatHeader = () => {
   const activeChatId = useAtomValue(activeChatIdAtom);

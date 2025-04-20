@@ -14,7 +14,7 @@ import { generatingNotesAtom } from "@/atoms/notes";
 import { StatesPlugin } from "./states";
 import { SkeletonPlugin } from "./skeleton";
 import { getSelectedModelAtom } from "@/actions/providers";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 const ActionCard = ({
   title,

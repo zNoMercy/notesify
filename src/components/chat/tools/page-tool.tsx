@@ -4,7 +4,7 @@ import { Check, CircleAlert } from "lucide-react";
 import { getPdfMetadataAtom, jumpToPageAtom } from "@/actions/pdf-viewer";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 import { ToolInvocation } from "ai";
 
 export const PageTool = ({

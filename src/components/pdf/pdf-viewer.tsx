@@ -20,7 +20,7 @@ import { toast } from "sonner";
 import { useNavigate } from "@tanstack/react-router";
 import { activeAnnotatorAtomFamily } from "@/atoms/annotator-options";
 import { activePdfIdAtom, currentPageAtomFamily } from "@/atoms/pdf-viewer";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 export const PdfViewer = ({ pdfId }: { pdfId: string }) => {
   const navigate = useNavigate();

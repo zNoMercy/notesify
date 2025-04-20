@@ -5,13 +5,13 @@ import { AutogrowingTextarea } from "@/components/origin-ui/inputs";
 import { SelectAreaContextButton } from "./action-button/select-context-button";
 import { SendButton } from "./action-button/send-button";
 import { ModelSelector } from "../pdf/model-selector";
-import { useChat } from "@/hooks/use-chat";
+import { useChat } from "@/hooks/chat/use-chat";
 import { activeContextsAtom } from "@/atoms/contexts";
 import { activeChatIdAtom } from "@/atoms/chats";
 import { activePdfIdAtom } from "@/atoms/pdf-viewer";
 import { generateId } from "@/lib/id";
 import { getSelectedModelAtom } from "@/actions/providers";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 export const ChatInput = () => {
   const [getModel] = useAction(getSelectedModelAtom);

@@ -9,9 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { type PageDimensions, renderPageToCanvas } from "@/lib/pdf";
+import { type PageDimensions, renderPageToCanvas } from "@/lib/pdf/canvas";
 import { jumpToPageAtom } from "@/actions/pdf-viewer";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 const PageThumbnail = ({
   pdfDocument,

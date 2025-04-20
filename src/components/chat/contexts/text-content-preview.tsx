@@ -3,7 +3,7 @@ import { VscGoToFile } from "react-icons/vsc";
 
 import { jumpToContextAtom, removeContextAtom } from "@/actions/contexts";
 import { Context } from "@/atoms/contexts";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 interface TextContextPreviewProps {
   context: Context;

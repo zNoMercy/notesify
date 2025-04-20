@@ -13,7 +13,7 @@ import {
 } from "@/actions/annontations";
 import { annotationsByPageAtomFamilyLoadable } from "@/atoms/annotations";
 import { cn } from "@/lib/utils";
-import { useAction } from "@/hooks/use-action";
+import { useAction } from "@/hooks/state/use-action";
 
 export const AnnotatorLayer = ({
   pdfId,
