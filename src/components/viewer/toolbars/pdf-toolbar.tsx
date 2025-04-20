@@ -14,69 +14,64 @@ import { PageButton } from "@/components/pdf/menu/buttons/page-button";
 
 export const PdfToolbar = ({ pdfId }: { pdfId: string }) => {
   const pdf = useAtomValue(fileAtomFamily(pdfId));
-  const pdfName = pdf?.name || "Unknown PDF";
   const [activeAnnotator, setActiveAnnotator] = useAtom(
     activeAnnotatorAtomFamily(pdfId)
   );
 
   return (
-    <Card
-      className={cn(
-        "sticky top-0 flex flex-col w-full pointer-events-auto px-2 border-2 border-transparent z-30 rounded-none shadow"
+    <Card className="sticky top-0 flex flex-row items-center gap-0.5 px-2 border-2 border-transparent z-30 rounded-none overflow-y-scroll scrollbar-hide">
+      <span className="truncate max-w-96 min-w-32 mr-2">
+        {pdf?.name || "Unknown PDF"}
+      </span>
+
+      <Separator orientation="vertical" className="mx-0.5 h-6" />
+
+      <TooltipButton
+        tooltip="Pen"
+        onClick={() =>
+          setActiveAnnotator(activeAnnotator === "pen" ? undefined : "pen")
+        }
+        className={cn(activeAnnotator === "pen" && "bg-neutral-200")}
+      >
+        <Pen />
+      </TooltipButton>
+      <TooltipButton
+        tooltip="Highlighter"
+        onClick={() =>
+          setActiveAnnotator(
+            activeAnnotator === "highlighter" ? undefined : "highlighter"
+          )
+        }
+        className={cn(activeAnnotator === "highlighter" && "bg-neutral-200")}
+      >
+        <Highlighter />
+      </TooltipButton>
+      <TooltipButton
+        tooltip="Eraser"
+        onClick={() =>
+          setActiveAnnotator(
+            activeAnnotator === "eraser" ? undefined : "eraser"
+          )
+        }
+        className={cn(activeAnnotator === "eraser" && "bg-neutral-200")}
+      >
+        <Eraser />
+      </TooltipButton>
+
+      <Separator orientation="vertical" className="mx-1 h-6" />
+
+      <UndoRedoButton pdfId={pdfId} />
+
+      {(activeAnnotator === "pen" || activeAnnotator === "highlighter") && (
+        <>
+          <Separator orientation="vertical" className="mx-1 h-6" />
+          <AnnotatorOptions pdfId={pdfId} type={activeAnnotator} />
+        </>
       )}
-    >
-      <div className="flex flex-row items-center gap-0.5">
-        <span className="truncate max-w-96 mr-2">{pdfName}</span>
 
-        <Separator orientation="vertical" className="mx-0.5 h-6" />
+      <span className="grow" />
 
-        <TooltipButton
-          tooltip="Pen"
-          onClick={() =>
-            setActiveAnnotator(activeAnnotator === "pen" ? undefined : "pen")
-          }
-          className={cn(activeAnnotator === "pen" && "bg-neutral-200")}
-        >
-          <Pen />
-        </TooltipButton>
-        <TooltipButton
-          tooltip="Highlighter"
-          onClick={() =>
-            setActiveAnnotator(
-              activeAnnotator === "highlighter" ? undefined : "highlighter"
-            )
-          }
-          className={cn(activeAnnotator === "highlighter" && "bg-neutral-200")}
-        >
-          <Highlighter />
-        </TooltipButton>
-        <TooltipButton
-          tooltip="Eraser"
-          onClick={() =>
-            setActiveAnnotator(
-              activeAnnotator === "eraser" ? undefined : "eraser"
-            )
-          }
-          className={cn(activeAnnotator === "eraser" && "bg-neutral-200")}
-        >
-          <Eraser />
-        </TooltipButton>
-
-        <Separator orientation="vertical" className="mx-1 h-6" />
-
-        <UndoRedoButton pdfId={pdfId} />
-
-        {(activeAnnotator === "pen" || activeAnnotator === "highlighter") && (
-          <>
-            <Separator orientation="vertical" className="mx-1 h-6" />
-            <AnnotatorOptions pdfId={pdfId} type={activeAnnotator} />
-          </>
-        )}
-
-        <div className="flex-grow" />
-
-        <PageButton pdfId={pdfId} />
-      </div>
+      <PageButton pdfId={pdfId} />
     </Card>
   );
 };
