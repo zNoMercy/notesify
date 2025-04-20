@@ -37,6 +37,7 @@ Desktop/mobile apps will be available when the app is more stable.
 - [x] Custom AI models
   - [x] Chat model (with image support)
   - [x] PDF parsing model
+  - [ ] TTS/STT model
   - [ ] Text embedding model
   - [ ] Vector database
 - [x] Notes editor
@@ -65,6 +66,11 @@ pnpm tauri ios dev
 # For converting PPTX/DOCX to PDF using Gotenberg
 cd server
 docker compose up -d
+```
+
+```bash
+# Update migration file after modifying schema
+pnpm db:generate
 ```
 
 ## Tech Stack
