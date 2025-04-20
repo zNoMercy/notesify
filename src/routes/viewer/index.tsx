@@ -24,6 +24,8 @@ import { Header } from "@/components/viewer/header";
 import { notesOpenAtom } from "@/atoms/notes";
 import { chatsOpenAtom } from "@/atoms/chats";
 import { fileSystemOpenAtom } from "@/atoms/file-system";
+import { audioRecorderOpenAtom } from "@/atoms/audio-recorder";
+import { AudioRecorder } from "@/components/audio-recorder/audio-recorder";
 
 const viewerSearchSchema = z.object({
   // id: z.union([z.string().array(), z.string()]),
@@ -54,6 +56,7 @@ const Viewer = () => {
   const chatsOpen = useAtomValue(chatsOpenAtom);
   const pdfViewerOpen = useAtomValue(pdfViewerOpenAtom);
   const notesOpen = useAtomValue(notesOpenAtom);
+  const audioRecorderOpen = useAtomValue(audioRecorderOpenAtom);
 
   // const draggingItemId = useAtomValue(draggingItemIdAtom);
 
@@ -109,8 +112,17 @@ const Viewer = () => {
         )}
 
         {chatsOpen && (
-          <ResizablePanel minSize={25} order={4}>
-            <Chat />
+          <>
+            <ResizablePanel minSize={25} order={4}>
+              <Chat />
+            </ResizablePanel>
+            <ResizableHandle withHandle />
+          </>
+        )}
+
+        {audioRecorderOpen && (
+          <ResizablePanel minSize={25} order={5}>
+            <AudioRecorder />
           </ResizablePanel>
         )}
       </ResizablePanelGroup>
