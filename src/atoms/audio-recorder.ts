@@ -81,8 +81,7 @@ export const recordingDataAtomFamily = atomFamily((id: string) =>
       async getItem(_key, initialValue) {
         try {
           const data = await readFile(await getRecordingPath(id));
-          const blob = new Blob([data], { type: "audio/webm" });
-          toast.success("Recording loaded successfully");
+          const blob = new Blob([data], { type: "audio/mp4" });
           return { id, data: blob };
         } catch (error) {
           toast.error("Failed to load recording: " + error);
@@ -93,7 +92,6 @@ export const recordingDataAtomFamily = atomFamily((id: string) =>
         if (!value) return;
         try {
           const data = new Uint8Array(await value.data.arrayBuffer());
-          toast.success("Recording saved successfully");
           await writeFile(await getRecordingPath(id), data);
         } catch (error) {
           toast.error("Failed to save recording: " + error);

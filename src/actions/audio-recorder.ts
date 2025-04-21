@@ -62,7 +62,9 @@ export const startRecordingAtom = atom(null, async (get, set) => {
         autoGainControl: true,
       },
     });
-    mediaRecorder = new MediaRecorder(stream);
+
+    const mimeType = "audio/mp4"; // "audio/webm" doesn't work on Safari
+    mediaRecorder = new MediaRecorder(stream, { mimeType });
     const audioChunks: Blob[] = [];
     set(recordingTimeAtom, 0); // Reset recording time at start
 
@@ -71,7 +73,7 @@ export const startRecordingAtom = atom(null, async (get, set) => {
     };
 
     mediaRecorder.onstop = () => {
-      const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+      const audioBlob = new Blob(audioChunks, { type: mimeType });
       const finalDuration = Math.max(get(recordingTimeAtom), 1); // Ensure at least 1 second
 
       const recordingId = generateId();
