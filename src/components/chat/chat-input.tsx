@@ -48,10 +48,6 @@ export const ChatInput = () => {
       role: "user",
       content: input,
       data: JSON.stringify({
-        // the id and createdAt of user message isn't passed to the backend by ai-sdk
-        // so we need to pass them here
-        id,
-        createdAt,
         modelId: customModel.modelId,
         contexts,
       }),

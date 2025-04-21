@@ -11,7 +11,6 @@ import { evaluate } from "mathjs";
 import { createChatStreamAtom } from "@/actions/ai";
 import { useLoadable } from "../state/use-loadable";
 import { saveMessageAtom } from "@/actions/messages";
-import { MessageDB } from "@/db/schema";
 import { getSelectedModelAtom } from "@/actions/providers";
 import { useAction } from "../state/use-action";
 import { toast } from "sonner";
@@ -48,6 +47,7 @@ export const useChat = ({
     id: chatId,
     // api: import.meta.env.VITE_CHAT_ENDPOINT,
     maxSteps: 10,
+    sendExtraMessageFields: true,
     initialMessages: initialMessages as Message[],
     onToolCall: async ({ toolCall }) => {
       console.log("Executing tool", toolCall.toolName, toolCall.args);
@@ -107,17 +107,13 @@ export const useChat = ({
       const data = JSON.parse(lastMessage.data ?? "{}");
 
       if (lastMessage.role === "user") {
-        const { id, createdAt, ...otherData } = data;
-        const date = new Date(createdAt);
         const userMessage = {
-          id,
+          ...lastMessage,
           chatId,
-          createdAt: date,
+          createdAt: new Date(lastMessage.createdAt),
           role: "user",
-          content: lastMessage.content,
-          data: JSON.stringify(otherData),
           annotations: null,
-        } as MessageDB;
+        };
         console.log("Saving user message", userMessage);
         await saveMessage(userMessage);
       }
