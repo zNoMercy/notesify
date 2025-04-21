@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import { formatDuration } from "../../lib/audio/utils";
 import { AudioPlayer } from "./audio-player";
 import { useAtomValue, useSetAtom } from "jotai";
-import { playRecordingAtom } from "@/actions/audio-recorder";
-import { selectedRecordingIdAtom } from "@/atoms/audio-recorder";
+import { playRecordingAtom } from "@/actions/recording/audio-recorder";
+import { selectedRecordingIdAtom } from "@/atoms/recording/audio-recorder";
 import { Recording } from "@/db/schema";
 
 export const RecordingItem = ({ recording }: { recording: Recording }) => {

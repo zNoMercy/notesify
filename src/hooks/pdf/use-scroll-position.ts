@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSetAtom } from "jotai";
-import { updatePdfAtom } from "@/actions/pdf-viewer";
+import { updatePdfAtom } from "@/actions/pdf/pdf-viewer";
 
 export const useScrollPosition = (
   pdfId: string,

@@ -1,6 +1,6 @@
 import { ProviderCardBase } from "./provider-card-base";
 import { ProviderConfig } from "../provider-settings-dialog";
-import { configuredProvidersAtom, Provider } from "@/atoms/providers";
+import { configuredProvidersAtom, Provider } from "@/atoms/setting/providers";
 import { useAtom } from "jotai";
 import { toast } from "sonner";
 

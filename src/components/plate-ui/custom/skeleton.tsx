@@ -1,6 +1,6 @@
 import { createPlatePlugin, useEditorPlugin } from "@udecode/plate/react";
 import { useAtomValue } from "jotai";
-import { generatingNotesAtom } from "@/atoms/notes";
+import { generatingNotesAtom } from "@/atoms/notes/notes";
 import { StatesPlugin } from "./states";
 import { Skeleton } from "@/components/ui/skeleton";
 

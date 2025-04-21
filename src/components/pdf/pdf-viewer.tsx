@@ -11,15 +11,15 @@ import { TextMenu } from "./menu/text-menu";
 import { useZoom } from "../../hooks/pdf/use-zoom";
 import { useEffect, useRef } from "react";
 import { useAtomValue, useSetAtom } from "jotai";
-import { loadPdfAtom, unloadPdfAtom } from "@/actions/pdf";
+import { loadPdfAtom, unloadPdfAtom } from "@/actions/pdf/pdf";
 import { useScrollPosition } from "@/hooks/pdf/use-scroll-position";
 import { AnnotatorLayer } from "./layer/annotator-layer";
 import { useHistoryShortcuts } from "@/hooks/pdf/use-history-shortcuts";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { useNavigate } from "@tanstack/react-router";
-import { activeAnnotatorAtomFamily } from "@/atoms/annotator-options";
-import { activePdfIdAtom, currentPageAtomFamily } from "@/atoms/pdf-viewer";
+import { activeAnnotatorAtomFamily } from "@/atoms/pdf/annotator-options";
+import { activePdfIdAtom, currentPageAtomFamily } from "@/atoms/pdf/pdf-viewer";
 import { useAction } from "@/hooks/state/use-action";
 
 export const PdfViewer = ({ pdfId }: { pdfId: string }) => {

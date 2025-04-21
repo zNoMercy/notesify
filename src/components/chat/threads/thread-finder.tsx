@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
 
-import { activeChatIdAtom } from "@/atoms/chats";
+import { activeChatIdAtom } from "@/atoms/chat/chats";
 import { useGroupedChats } from "@/hooks/chat/use-grouped-chats";
 
 import { ThreadHeader } from "./thread-header";

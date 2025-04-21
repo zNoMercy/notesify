@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Recording } from "@/db/schema";
-import { renameRecordingAtom } from "@/actions/audio-recorder";
+import { renameRecordingAtom } from "@/actions/recording/audio-recorder";
 import { useSetAtom } from "jotai";
 
 export const RenameDialog = ({

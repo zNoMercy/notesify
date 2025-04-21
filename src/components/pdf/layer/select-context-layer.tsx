@@ -1,8 +1,8 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import React, { useCallback, useRef, useState } from "react";
 
-import { addContextAtom } from "@/actions/contexts";
-import { selectContextModeAtom, viewerAtomFamily } from "@/atoms/pdf-viewer";
+import { addContextAtom } from "@/actions/chat/contexts";
+import { selectContextModeAtom, viewerAtomFamily } from "@/atoms/pdf/pdf-viewer";
 import { captureScreenshot } from "@/lib/pdf/canvas";
 import { useHotkeys } from "react-hotkeys-hook";
 import { generateId } from "@/lib/id";

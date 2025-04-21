@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { createNewChatAtom, updateChatTitleAtom } from "@/actions/chats";
-import { chatAtomFamilyLoadable } from "@/atoms/chats";
+import { createNewChatAtom, updateChatTitleAtom } from "@/actions/chat/chats";
+import { chatAtomFamilyLoadable } from "@/atoms/chat/chats";
 import { useLoadable } from "../state/use-loadable";
 import { Message } from "ai";
 import { useAction } from "../state/use-action";

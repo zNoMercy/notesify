@@ -1,5 +1,5 @@
 import { useAtomValue } from "jotai";
-import { rootFilesAtomLoadable } from "@/atoms/file-system";
+import { rootFilesAtomLoadable } from "@/atoms/file-system/file-system";
 import { PdfFileUploader } from "@/components/file-system/file-uploader";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Draggable } from "@/components/dnd/draggable";

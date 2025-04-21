@@ -6,11 +6,11 @@ import { SelectAreaContextButton } from "./action-button/select-context-button";
 import { SendButton } from "./action-button/send-button";
 import { ModelSelector } from "../pdf/model-selector";
 import { useChat } from "@/hooks/chat/use-chat";
-import { activeContextsAtom } from "@/atoms/contexts";
-import { activeChatIdAtom } from "@/atoms/chats";
-import { activePdfIdAtom } from "@/atoms/pdf-viewer";
+import { activeContextsAtom } from "@/atoms/chat/contexts";
+import { activeChatIdAtom } from "@/atoms/chat/chats";
+import { activePdfIdAtom } from "@/atoms/pdf/pdf-viewer";
 import { generateId } from "@/lib/id";
-import { getSelectedModelAtom } from "@/actions/providers";
+import { getSelectedModelAtom } from "@/actions/setting/providers";
 import { useAction } from "@/hooks/state/use-action";
 
 export const ChatInput = () => {

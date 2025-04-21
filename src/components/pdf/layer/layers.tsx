@@ -1,7 +1,7 @@
 import { useAtomValue } from "jotai";
 import React from "react";
 
-import { renderedPagesAtomFamily } from "@/atoms/pdf-viewer";
+import { renderedPagesAtomFamily } from "@/atoms/pdf/pdf-viewer";
 
 interface LayersProps {
   children: (pageNumber: number) => React.ReactNode;

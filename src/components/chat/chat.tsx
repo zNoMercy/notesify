@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai";
 
-import { activeContextsAtom } from "@/atoms/contexts";
+import { activeContextsAtom } from "@/atoms/chat/contexts";
 
 import { ChatHeader } from "./chat-header";
 import { ChatInput } from "./chat-input";
@@ -9,7 +9,7 @@ import { ImageContextsPreview } from "./contexts/image-context-preview";
 import { TextContextsPreview } from "./contexts/text-content-preview";
 import { ThreadFinder } from "./threads/thread-finder";
 import { QuickActions } from "./quick-actions/quick-actions";
-import { threadFinderOpenAtom } from "@/atoms/chats";
+import { threadFinderOpenAtom } from "@/atoms/chat/chats";
 
 // import { Message } from "ai";
 // const messages: Message[] = [

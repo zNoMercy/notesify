@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 
-import { activeBoundingContextAtom } from "@/atoms/contexts";
+import { activeBoundingContextAtom } from "@/atoms/chat/contexts";
 
 import { BoundingRect } from "../../pdf/menu/bounding-rect";
 

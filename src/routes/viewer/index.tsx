@@ -1,7 +1,7 @@
 import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { useAtomValue } from "jotai";
 
-import { pdfViewerOpenAtom } from "@/atoms/pdf-viewer";
+import { pdfViewerOpenAtom } from "@/atoms/pdf/pdf-viewer";
 import { PlateEditor } from "@/components/editor/plate-editor";
 import { Chat } from "@/components/chat/chat";
 import { PdfCommandDialog } from "@/components/pdf/dialog/command-dialog";
@@ -21,10 +21,10 @@ import { PdfViewerDndProvider } from "@/components/dnd/pdf-viewer-dnd-context";
 import { isTauri } from "@/lib/tauri";
 import { PdfToolbar } from "@/components/viewer/toolbars/pdf-toolbar";
 import { Header } from "@/components/viewer/header";
-import { notesOpenAtom } from "@/atoms/notes";
-import { chatsOpenAtom } from "@/atoms/chats";
-import { fileSystemOpenAtom } from "@/atoms/file-system";
-import { audioRecorderOpenAtom } from "@/atoms/audio-recorder";
+import { notesOpenAtom } from "@/atoms/notes/notes";
+import { chatsOpenAtom } from "@/atoms/chat/chats";
+import { fileSystemOpenAtom } from "@/atoms/file-system/file-system";
+import { audioRecorderOpenAtom } from "@/atoms/recording/audio-recorder";
 import { AudioRecorder } from "@/components/audio-recorder/audio-recorder";
 
 const viewerSearchSchema = z.object({

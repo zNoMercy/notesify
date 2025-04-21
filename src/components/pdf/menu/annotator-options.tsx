@@ -9,7 +9,7 @@ import {
   selectedHighlighterSizeAtomFamily,
   selectedPenColorAtomFamily,
   selectedHighlighterColorAtomFamily,
-} from "@/atoms/annotator-options";
+} from "@/atoms/pdf/annotator-options";
 import { Separator } from "@/components/ui/separator";
 
 export const AnnotatorOptions = ({

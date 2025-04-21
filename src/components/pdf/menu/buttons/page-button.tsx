@@ -1,5 +1,5 @@
-import { pdfAtomFamily } from "@/atoms/pdf";
-import { currentPageAtomFamily } from "@/atoms/pdf-viewer";
+import { pdfAtomFamily } from "@/atoms/pdf/pdf";
+import { currentPageAtomFamily } from "@/atoms/pdf/pdf-viewer";
 import { TooltipButton } from "@/components/tooltip/tooltip-button";
 import { useAtomValue } from "jotai";
 import { PagesDialog } from "../../dialog/pages-dialog";

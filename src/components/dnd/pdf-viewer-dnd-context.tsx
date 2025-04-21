@@ -7,10 +7,10 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { useAtomValue, useSetAtom } from "jotai";
-import { openedPdfIdsAtom } from "@/atoms/pdf-viewer";
+import { openedPdfIdsAtom } from "@/atoms/pdf/pdf-viewer";
 import { toast } from "sonner";
 import { useNavigate } from "@tanstack/react-router";
-import { draggingItemIdAtom } from "@/atoms/file-system";
+import { draggingItemIdAtom } from "@/atoms/file-system/file-system";
 
 export function PdfViewerDndProvider({ children }: { children: ReactNode }) {
   const sensors = useSensors(

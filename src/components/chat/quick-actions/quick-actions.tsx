@@ -4,12 +4,12 @@ import { useAtom, useAtomValue } from "jotai";
 import {
   chatSuggestionsAtom,
   editSuggestionDialogAtom,
-} from "@/atoms/chat-suggestions";
+} from "@/atoms/chat/chat-suggestions";
 import { EditSuggestionDialog } from "../../pdf/dialog/edit-suggestion-dialog";
-import { activePdfIdAtom } from "@/atoms/pdf-viewer";
-import { activeChatIdAtom } from "@/atoms/chats";
+import { activePdfIdAtom } from "@/atoms/pdf/pdf-viewer";
+import { activeChatIdAtom } from "@/atoms/chat/chats";
 import { useChat } from "@/hooks/chat/use-chat";
-import { getSelectedModelAtom } from "@/actions/providers";
+import { getSelectedModelAtom } from "@/actions/setting/providers";
 import { useAction } from "@/hooks/state/use-action";
 
 export const QuickActions = () => {

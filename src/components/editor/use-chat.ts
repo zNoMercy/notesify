@@ -4,7 +4,7 @@ import { faker } from "@faker-js/faker";
 import { useChat as useBaseChat } from "@ai-sdk/react";
 
 import { streamText } from "ai";
-import { getSelectedModelAtom } from "@/actions/providers";
+import { getSelectedModelAtom } from "@/actions/setting/providers";
 import { useAction } from "@/hooks/state/use-action";
 
 export const useChat = () => {

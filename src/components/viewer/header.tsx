@@ -10,17 +10,17 @@ import { TooltipButton } from "@/components/tooltip/tooltip-button";
 import { Card } from "@/components/ui/card";
 
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { pdfViewerOpenAtom } from "@/atoms/pdf-viewer";
+import { pdfViewerOpenAtom } from "@/atoms/pdf/pdf-viewer";
 import { Separator } from "../ui/separator";
-import { notesOpenAtom } from "@/atoms/notes";
-import { chatsOpenAtom } from "@/atoms/chats";
+import { notesOpenAtom } from "@/atoms/notes/notes";
+import { chatsOpenAtom } from "@/atoms/chat/chats";
 import { useNavigatePdf } from "@/hooks/pdf/use-navigate-pdf";
-import { openSettingsDialogAtom } from "@/atoms/providers";
-import { fileSystemOpenAtom } from "@/atoms/file-system";
+import { openSettingsDialogAtom } from "@/atoms/setting/providers";
+import { fileSystemOpenAtom } from "@/atoms/file-system/file-system";
 import {
   audioRecorderOpenAtom,
   recordingStateAtom,
-} from "@/atoms/audio-recorder";
+} from "@/atoms/recording/audio-recorder";
 import { cn } from "@/lib/utils";
 
 export const Header = ({ pdfId }: { pdfId: string }) => {

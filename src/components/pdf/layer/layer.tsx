@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { createRoot, Root } from "react-dom/client";
 import { useAtomValue } from "jotai";
-import { viewerAtomFamily } from "@/atoms/pdf-viewer";
+import { viewerAtomFamily } from "@/atoms/pdf/pdf-viewer";
 
 export const Layer = ({
   pdfId,

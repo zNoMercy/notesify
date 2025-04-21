@@ -1,10 +1,10 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import { activePdfIdAtom, viewerAtomFamily } from "@/atoms/pdf-viewer";
+import { activePdfIdAtom, viewerAtomFamily } from "@/atoms/pdf/pdf-viewer";
 import { useEffect, useRef } from "react";
 import { useGesture } from "@use-gesture/react";
-import { updatePdfAtom } from "@/actions/pdf-viewer";
+import { updatePdfAtom } from "@/actions/pdf/pdf-viewer";
 
 export const useZoom = (
   pdfId: string,

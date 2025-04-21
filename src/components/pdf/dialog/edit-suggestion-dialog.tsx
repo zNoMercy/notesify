@@ -1,8 +1,8 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
 
-import { editSuggestionDialogAtom } from "@/atoms/chat-suggestions";
-import { updateChatSuggestionAtom } from "@/actions/chat-suggestions";
+import { editSuggestionDialogAtom } from "@/atoms/chat/chat-suggestions";
+import { updateChatSuggestionAtom } from "@/actions/chat/suggestions";
 import {
   Dialog,
   DialogContent,

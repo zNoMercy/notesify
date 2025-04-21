@@ -2,7 +2,7 @@ import { useAtomValue } from "jotai";
 import { type PDFDocumentProxy } from "pdfjs-dist";
 import { useEffect, useRef, useState } from "react";
 
-import { documentAtomFamily } from "@/atoms/pdf-viewer";
+import { documentAtomFamily } from "@/atoms/pdf/pdf-viewer";
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { type PageDimensions, renderPageToCanvas } from "@/lib/pdf/canvas";
-import { jumpToPageAtom } from "@/actions/pdf-viewer";
+import { jumpToPageAtom } from "@/actions/pdf/pdf-viewer";
 import { useAction } from "@/hooks/state/use-action";
 
 const PageThumbnail = ({

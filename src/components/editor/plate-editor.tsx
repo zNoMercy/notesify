@@ -4,11 +4,11 @@ import { Plate } from "@udecode/plate/react";
 import { useCreateEditor } from "@/components/editor/use-create-editor";
 import { Editor, EditorContainer } from "@/components/plate-ui/editor";
 import { useEffect, useRef, useCallback, useState } from "react";
-import { updateNotesAtom } from "@/actions/notes";
+import { updateNotesAtom } from "@/actions/notes/notes";
 import { useDebouncedCallback } from "use-debounce";
 import { StatesPlugin } from "../plate-ui/custom/states";
 import { useLoadable } from "@/hooks/state/use-loadable";
-import { notesAtomFamilyLoadable } from "@/atoms/notes";
+import { notesAtomFamilyLoadable } from "@/atoms/notes/notes";
 import { useAction } from "@/hooks/state/use-action";
 
 export function PlateEditor({ notesId }: { notesId: string }) {

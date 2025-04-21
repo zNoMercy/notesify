@@ -11,7 +11,7 @@ import { GhostText } from "@/components/plate-ui/ghost-text";
 import { markdownPlugin } from "./markdown-plugin";
 import { generateText } from "ai";
 import { createOpenAI, OpenAIProviderSettings } from "@ai-sdk/openai";
-import { Model } from "@/atoms/providers";
+import { Model } from "@/atoms/setting/providers";
 
 export const copilotPlugins = [
   markdownPlugin,

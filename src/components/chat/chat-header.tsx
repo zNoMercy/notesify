@@ -1,13 +1,13 @@
 import { useAtomValue, useSetAtom } from "jotai";
 import { History, Plus, X } from "lucide-react";
 
-import { createNewChatAtom } from "@/actions/chats";
+import { createNewChatAtom } from "@/actions/chat/chats";
 import {
   activeChatIdAtom,
   chatAtomFamilyLoadable,
   chatsOpenAtom,
   threadFinderOpenAtom,
-} from "@/atoms/chats";
+} from "@/atoms/chat/chats";
 import { TooltipButton } from "@/components/tooltip/tooltip-button";
 import { Card } from "@/components/ui/card";
 import { useChat } from "@/hooks/chat/use-chat";

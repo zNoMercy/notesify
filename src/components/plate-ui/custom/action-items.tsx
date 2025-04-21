@@ -7,13 +7,13 @@ import {
 import { Card } from "@/components/ui/card";
 import { deserializeMd } from "@udecode/plate-markdown";
 import { useAtomValue } from "jotai";
-import { generateSummaryAtom } from "@/actions/summary";
-import { activePdfIdAtom } from "@/atoms/pdf-viewer";
+import { generateSummaryAtom } from "@/actions/notes/summary";
+import { activePdfIdAtom } from "@/atoms/pdf/pdf-viewer";
 import { toast } from "sonner";
-import { generatingNotesAtom } from "@/atoms/notes";
+import { generatingNotesAtom } from "@/atoms/notes/notes";
 import { StatesPlugin } from "./states";
 import { SkeletonPlugin } from "./skeleton";
-import { getSelectedModelAtom } from "@/actions/providers";
+import { getSelectedModelAtom } from "@/actions/setting/providers";
 import { useAction } from "@/hooks/state/use-action";
 
 const ActionCard = ({

@@ -11,7 +11,7 @@ import { RenameDialog } from "./dialogs/rename-dialog";
 import { DeleteDialog } from "./dialogs/delete-dialog";
 import { Recording } from "@/db/schema";
 import { useAtom } from "jotai";
-import { selectedRecordingIdAtom } from "@/atoms/audio-recorder";
+import { selectedRecordingIdAtom } from "@/atoms/recording/audio-recorder";
 
 export const RecordingItemMenu = ({ recording }: { recording: Recording }) => {
   const [isRenameDialogOpen, setIsRenameDialogOpen] = useState(false);

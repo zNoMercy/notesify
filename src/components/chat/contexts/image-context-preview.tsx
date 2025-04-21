@@ -2,8 +2,8 @@ import { useSetAtom } from "jotai";
 import { CgClose } from "react-icons/cg";
 import { VscGoToFile } from "react-icons/vsc";
 
-import { jumpToContextAtom, removeContextAtom } from "@/actions/contexts";
-import { activePreviewContextAtom, Context } from "@/atoms/contexts";
+import { jumpToContextAtom, removeContextAtom } from "@/actions/chat/contexts";
+import { activePreviewContextAtom, Context } from "@/atoms/chat/contexts";
 import { useAction } from "@/hooks/state/use-action";
 
 interface ImageContextPreviewProps {

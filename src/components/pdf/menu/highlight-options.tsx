@@ -3,7 +3,7 @@ import { useAtom, useAtomValue } from "jotai";
 import {
   highlightColorsAtom,
   selectedHighlightColorAtom,
-} from "@/atoms/highlight-options";
+} from "@/atoms/pdf/highlight-options";
 import { Button } from "@/components/ui/button";
 import {
   Popover,

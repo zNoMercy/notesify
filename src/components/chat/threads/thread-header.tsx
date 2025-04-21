@@ -5,7 +5,7 @@ import {
   activeChatIdAtom,
   chatAtomFamilyLoadable,
   threadFinderOpenAtom,
-} from "@/atoms/chats";
+} from "@/atoms/chat/chats";
 import { TooltipButton } from "@/components/tooltip/tooltip-button";
 
 export const ThreadHeader = () => {

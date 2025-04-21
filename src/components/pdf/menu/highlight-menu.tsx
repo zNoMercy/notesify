@@ -2,12 +2,12 @@ import { useAtom, useSetAtom } from "jotai";
 import { Copy, Sparkles, Trash } from "lucide-react";
 import { toast } from "sonner";
 
-import { addContextAtom } from "@/actions/contexts";
+import { addContextAtom } from "@/actions/chat/contexts";
 import {
   changeHighlightColorAtom,
   copyHighlightAtom,
   deleteHighlightAtom,
-} from "@/actions/highlights";
+} from "@/actions/pdf/highlights";
 import { TooltipButton } from "@/components/tooltip/tooltip-button";
 import { Separator } from "@/components/ui/separator";
 import { calcBoundingRect } from "@/lib/pdf/rects";
@@ -16,9 +16,9 @@ import { BoundingRect } from "./bounding-rect";
 import { HighlightOptions } from "./highlight-options";
 import { Menu } from "./menu";
 import { generateId } from "@/lib/id";
-import { chatsOpenAtom } from "@/atoms/chats";
+import { chatsOpenAtom } from "@/atoms/chat/chats";
 import { useAction } from "@/hooks/state/use-action";
-import { activeHighlightAtom } from "@/atoms/highlights";
+import { activeHighlightAtom } from "@/atoms/pdf/highlights";
 
 export const HighlightMenu = ({ pdfId }: { pdfId: string }) => {
   const [activeHighlight, setActiveHighlight] = useAtom(activeHighlightAtom);

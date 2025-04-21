@@ -4,12 +4,12 @@ import {
   usePlateState,
 } from "@udecode/plate/react";
 import { useAtomValue, useSetAtom } from "jotai";
-import { generatingNotesAtom } from "@/atoms/notes";
+import { generatingNotesAtom } from "@/atoms/notes/notes";
 import { StatesPlugin } from "./states";
 import {
   generateSummaryAtom,
   stopGeneratingNotesAtom,
-} from "@/actions/summary";
+} from "@/actions/notes/summary";
 import { PenOff, Sparkles } from "lucide-react";
 import { ToolbarButton } from "../toolbar";
 import {
@@ -17,11 +17,11 @@ import {
   LengthType,
   QualityType,
 } from "./generate-notes-dialog";
-import { activePdfIdAtom } from "@/atoms/pdf-viewer";
+import { activePdfIdAtom } from "@/atoms/pdf/pdf-viewer";
 import { toast } from "sonner";
 import { deserializeMd, MarkdownPlugin } from "@udecode/plate-markdown";
 import { SkeletonPlugin } from "./skeleton";
-import { getSelectedModelAtom } from "@/actions/providers";
+import { getSelectedModelAtom } from "@/actions/setting/providers";
 import { useState } from "react";
 import { useAction } from "@/hooks/state/use-action";
 

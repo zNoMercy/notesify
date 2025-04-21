@@ -1,5 +1,5 @@
 import { Mic } from "lucide-react";
-import { recordingsAtomLoadable } from "@/atoms/audio-recorder";
+import { recordingsAtomLoadable } from "@/atoms/recording/audio-recorder";
 import { RecordingItem } from "./recording-item";
 import { cn } from "@/lib/utils";
 import { useLoadable } from "@/hooks/state/use-loadable";

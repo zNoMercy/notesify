@@ -1,6 +1,6 @@
 import { useAtomValue } from "jotai";
 
-import { highlightsByPageAtomFamilyLoadable } from "@/atoms/highlights";
+import { highlightsByPageAtomFamilyLoadable } from "@/atoms/pdf/highlights";
 
 import { Highlight } from "./components/highlight";
 

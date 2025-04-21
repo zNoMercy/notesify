@@ -63,7 +63,7 @@ import { RedoToolbarButton, UndoToolbarButton } from "./history-toolbar-button";
 import { ModeDropdownMenu } from "./mode-dropdown-menu";
 import { ToolbarButton, ToolbarGroup } from "./toolbar";
 import { useAtomValue, useSetAtom } from "jotai";
-import { generatingNotesAtom, notesOpenAtom } from "@/atoms/notes";
+import { generatingNotesAtom, notesOpenAtom } from "@/atoms/notes/notes";
 import { StatesPlugin } from "./custom/states";
 import { GeneratingButton } from "./custom/generating-button";
 import { X } from "lucide-react";

@@ -10,11 +10,14 @@ import { Button } from "@/components/ui/button";
 import { ItemMenu } from "./item-menu";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { removeNodeAtom, renameNodeAtom } from "@/actions/file-system";
-import { openedPdfIdsAtom } from "@/atoms/pdf-viewer";
+import {
+  removeNodeAtom,
+  renameNodeAtom,
+} from "@/actions/file-system/file-system";
+import { openedPdfIdsAtom } from "@/atoms/pdf/pdf-viewer";
 import { Badge } from "@/components/badge";
 import { FileNode } from "@/db/schema";
-import { downloadPdfAtom } from "@/actions/pdf";
+import { downloadPdfAtom } from "@/actions/pdf/pdf";
 import { useNavigatePdf } from "@/hooks/pdf/use-navigate-pdf";
 import { useAction } from "@/hooks/state/use-action";
 

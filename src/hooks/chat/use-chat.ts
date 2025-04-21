@@ -1,21 +1,21 @@
-import { getOpenedPdfsMetadataAtom } from "@/actions/pdf-viewer";
-import { withThinkingAtom } from "@/atoms/chats";
-import { activeContextsAtom } from "@/atoms/contexts";
-import { messagesAtomFamilyLoadable } from "@/atoms/messages";
-import { currentPageAtomFamily } from "@/atoms/pdf-viewer";
+import { getOpenedPdfsMetadataAtom } from "@/actions/pdf/pdf-viewer";
+import { withThinkingAtom } from "@/atoms/chat/chats";
+import { activeContextsAtom } from "@/atoms/chat/contexts";
+import { messagesAtomFamilyLoadable } from "@/atoms/chat/messages";
+import { currentPageAtomFamily } from "@/atoms/pdf/pdf-viewer";
 import { buildMessages, buildSystemMessage } from "@/lib/chat/chat";
 import { Message } from "ai";
 import { useChat as useBaseChat } from "@ai-sdk/react";
 import { useAtomValue, useSetAtom } from "jotai";
 import { evaluate } from "mathjs";
-import { createChatStreamAtom } from "@/actions/ai";
+import { createChatStreamAtom } from "@/actions/chat/ai";
 import { useLoadable } from "../state/use-loadable";
-import { saveMessageAtom } from "@/actions/messages";
-import { getSelectedModelAtom } from "@/actions/providers";
+import { saveMessageAtom } from "@/actions/chat/messages";
+import { getSelectedModelAtom } from "@/actions/setting/providers";
 import { useAction } from "../state/use-action";
 import { toast } from "sonner";
-import { getPdftextAtom } from "@/actions/pdf-parsing";
-import { searchPagesAtom } from "@/actions/pdf-indexing";
+import { getPdftextAtom } from "@/actions/pdf/pdf-parsing";
+import { searchPagesAtom } from "@/actions/pdf/pdf-indexing";
 import {
   CalculateParameters,
   GetPDFPageTextParameters,

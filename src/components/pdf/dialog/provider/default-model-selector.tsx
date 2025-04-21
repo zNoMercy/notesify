@@ -1,5 +1,5 @@
 import { Label } from "@/components/ui/label";
-import { ModelType, selectedModelsAtom } from "@/atoms/providers";
+import { ModelType, selectedModelsAtom } from "@/atoms/setting/providers";
 import { useAtom } from "jotai";
 import { ModelSelector } from "../../model-selector";
 

@@ -6,8 +6,8 @@ import { Separator } from "@/components/ui/separator";
 
 import { cn } from "@/lib/utils";
 import { useAtom, useAtomValue } from "jotai";
-import { fileAtomFamily } from "@/atoms/file-system";
-import { activeAnnotatorAtomFamily } from "@/atoms/annotator-options";
+import { fileAtomFamily } from "@/atoms/file-system/file-system";
+import { activeAnnotatorAtomFamily } from "@/atoms/pdf/annotator-options";
 import { AnnotatorOptions } from "@/components/pdf/menu/annotator-options";
 import { UndoRedoButton } from "@/components/pdf/menu/buttons/undo-redo-button";
 import { PageButton } from "@/components/pdf/menu/buttons/page-button";

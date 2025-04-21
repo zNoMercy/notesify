@@ -8,7 +8,7 @@ import {
   availableModelsAtom,
   openSettingsDialogAtom,
   selectedModelsAtom,
-} from "@/atoms/providers";
+} from "@/atoms/setting/providers";
 import { Button } from "@/components/ui/button";
 import { Select } from "../origin-ui/select";
 import { TooltipButton } from "../tooltip/tooltip-button";

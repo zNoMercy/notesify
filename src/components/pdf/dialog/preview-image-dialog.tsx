@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 
-import { activePreviewContextAtom } from "@/atoms/contexts";
+import { activePreviewContextAtom } from "@/atoms/chat/contexts";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 export const PreviewImageDialog = () => {

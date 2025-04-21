@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Checkbox } from "@/components/ui/checkbox";
-import { withThinkingAtom } from "@/atoms/chats";
+import { withThinkingAtom } from "@/atoms/chat/chats";
 
 export const ResponseQualityButton = () => {
   const [withThinking, setWithThinking] = useAtom(withThinkingAtom);

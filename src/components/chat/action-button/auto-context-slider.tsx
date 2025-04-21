@@ -1,6 +1,6 @@
-import { useViewingPagesAtom } from "@/atoms/contexts";
-import { pdfAtomFamily } from "@/atoms/pdf";
-import { activePdfIdAtom, currentPageAtomFamily } from "@/atoms/pdf-viewer";
+import { useViewingPagesAtom } from "@/atoms/chat/contexts";
+import { pdfAtomFamily } from "@/atoms/pdf/pdf";
+import { activePdfIdAtom, currentPageAtomFamily } from "@/atoms/pdf/pdf-viewer";
 import { TooltipSimple } from "@/components/tooltip/tooltip-simple";
 import { Switch } from "@/components/ui/switch";
 import { useAtom, useAtomValue } from "jotai";

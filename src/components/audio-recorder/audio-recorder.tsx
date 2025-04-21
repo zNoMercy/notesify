@@ -4,7 +4,7 @@ import { useSetAtom } from "jotai";
 import {
   initializeAudioPlayerAtom,
   cleanupAudioResourcesAtom,
-} from "@/actions/audio-recorder";
+} from "@/actions/recording/audio-recorder";
 
 import { AudioRecorderToolbar } from "./toolbar";
 import { RecordingControls } from "./recording-controls";

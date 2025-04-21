@@ -2,7 +2,7 @@ import { format, isToday, isYesterday } from "date-fns";
 import { useAtomValue } from "jotai";
 import { useMemo } from "react";
 
-import { chatsAtomLoadable } from "@/atoms/chats";
+import { chatsAtomLoadable } from "@/atoms/chat/chats";
 import { GroupedChats } from "@/components/pdf/chat/threads/types";
 
 export const useGroupedChats = (searchTerm: string = "") => {

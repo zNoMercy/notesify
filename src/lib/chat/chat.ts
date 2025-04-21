@@ -1,7 +1,7 @@
 import { CoreUserMessage, Message } from "ai";
 
-import { Context } from "@/atoms/contexts";
-import { PDFMetadata } from "@/actions/pdf-viewer";
+import { Context } from "@/atoms/chat/contexts";
+import { PDFMetadata } from "@/actions/pdf/pdf-viewer";
 import { thinkingPrompt } from "../prompts/thinking";
 
 const buildTextContent = (content: string, contexts?: Context[]) => {

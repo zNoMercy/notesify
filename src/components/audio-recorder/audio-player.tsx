@@ -15,14 +15,14 @@ import {
   currentTimeAtom,
   playbackSpeedAtom,
   selectedRecordingIdAtom,
-} from "@/atoms/audio-recorder";
+} from "@/atoms/recording/audio-recorder";
 import {
   playRecordingAtom,
   changePlaybackTimeAtom,
   skipForwardAtom,
   skipBackwardAtom,
   changePlaybackSpeedAtom,
-} from "@/actions/audio-recorder";
+} from "@/actions/recording/audio-recorder";
 import { GrBackTen, GrForwardTen } from "react-icons/gr";
 
 export const AudioPlayer = ({ duration }: { duration: number }) => {

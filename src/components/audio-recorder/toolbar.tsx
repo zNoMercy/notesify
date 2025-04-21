@@ -7,7 +7,7 @@ import { Card } from "../ui/card";
 import { TooltipButton } from "../tooltip/tooltip-button";
 import { toast } from "sonner";
 import { useSetAtom } from "jotai";
-import { audioRecorderOpenAtom } from "@/atoms/audio-recorder";
+import { audioRecorderOpenAtom } from "@/atoms/recording/audio-recorder";
 
 export const AudioRecorderToolbar = () => {
   const setIsOpen = useSetAtom(audioRecorderOpenAtom);

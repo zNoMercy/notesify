@@ -1,7 +1,7 @@
 import { Badge } from "@/components/badge";
 import { PageBadges } from "@/components/chat/tools/page-badges";
 import { Check, CircleAlert } from "lucide-react";
-import { getPdfMetadataAtom, jumpToPageAtom } from "@/actions/pdf-viewer";
+import { getPdfMetadataAtom, jumpToPageAtom } from "@/actions/pdf/pdf-viewer";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAction } from "@/hooks/state/use-action";

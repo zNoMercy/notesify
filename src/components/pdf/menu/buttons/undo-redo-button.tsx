@@ -1,5 +1,5 @@
-import { redoAtom, undoAtom } from "@/actions/history";
-import { canRedoAtom, canUndoAtom } from "@/atoms/history";
+import { redoAtom, undoAtom } from "@/actions/pdf/history";
+import { canRedoAtom, canUndoAtom } from "@/atoms/pdf/history";
 import { TooltipButton } from "@/components/tooltip/tooltip-button";
 import { useAtomValue, useSetAtom } from "jotai";
 import { Redo2, Undo2 } from "lucide-react";

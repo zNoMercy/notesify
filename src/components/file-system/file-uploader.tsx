@@ -1,6 +1,6 @@
 import { BsFiletypePdf, BsFiletypeDoc, BsFiletypePpt } from "react-icons/bs";
 import { FileInput, FileUploader } from "@/components/ui/file-uploader";
-import { convertToPdfAtom, savePdfAtom } from "@/actions/pdf";
+import { convertToPdfAtom, savePdfAtom } from "@/actions/pdf/pdf";
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
 import { useMediaQuery } from "react-responsive";

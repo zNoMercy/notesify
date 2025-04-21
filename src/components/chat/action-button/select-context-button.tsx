@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { Crop, File, SquareMousePointer, Type } from "lucide-react";
 
-import { selectContextModeAtom } from "@/atoms/pdf-viewer";
+import { selectContextModeAtom } from "@/atoms/pdf/pdf-viewer";
 import { TooltipDropdown } from "@/components/tooltip/tooltip-dropdown";
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";

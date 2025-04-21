@@ -4,7 +4,7 @@ import { useSetAtom } from "jotai";
 import { Button } from "@/components/ui/button";
 
 import { GroupedChats } from "./types";
-import { threadFinderOpenAtom } from "@/atoms/chats";
+import { threadFinderOpenAtom } from "@/atoms/chat/chats";
 
 interface ThreadListProps {
   groupedChats: GroupedChats;

@@ -2,13 +2,13 @@ import { Mic, Pause, Play, Square } from "lucide-react";
 import { useAtom, useSetAtom } from "jotai";
 import { Button } from "@/components/ui/button";
 import { formatDuration } from "../../lib/audio/utils";
-import { recordingStateAtom, recordingTimeAtom } from "@/atoms/audio-recorder";
+import { recordingStateAtom, recordingTimeAtom } from "@/atoms/recording/audio-recorder";
 import {
   startRecordingAtom,
   stopRecordingAtom,
   pauseRecordingAtom,
   resumeRecordingAtom,
-} from "@/actions/audio-recorder";
+} from "@/actions/recording/audio-recorder";
 
 export const RecordingControls = () => {
   const [recordingState] = useAtom(recordingStateAtom);

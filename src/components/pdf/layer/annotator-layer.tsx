@@ -6,12 +6,12 @@ import {
   selectedHighlighterSizeAtomFamily,
   selectedPenColorAtomFamily,
   selectedPenSizeAtomFamily,
-} from "@/atoms/annotator-options";
+} from "@/atoms/pdf/annotator-options";
 import {
   createAnnotationAtom,
   removeAnnotationAtom,
-} from "@/actions/annontations";
-import { annotationsByPageAtomFamilyLoadable } from "@/atoms/annotations";
+} from "@/actions/pdf/annontations";
+import { annotationsByPageAtomFamilyLoadable } from "@/atoms/pdf/annotations";
 import { cn } from "@/lib/utils";
 import { useAction } from "@/hooks/state/use-action";
 

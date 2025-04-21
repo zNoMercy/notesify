@@ -5,7 +5,7 @@ import {
   ModelType,
   configuredProvidersAtom,
   openSettingsDialogAtom,
-} from "@/atoms/providers";
+} from "@/atoms/setting/providers";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 import { AddModelProviderCard } from "./provider/add-provider-card";

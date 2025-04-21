@@ -8,8 +8,8 @@ import { useChat } from "@/hooks/chat/use-chat";
 import { ChatGuide } from "./chat-guide";
 import { useChatHelpers } from "@/hooks/chat/use-chat-helpers";
 import { useAtomValue } from "jotai";
-import { activeChatIdAtom } from "@/atoms/chats";
-import { activePdfIdAtom } from "@/atoms/pdf-viewer";
+import { activeChatIdAtom } from "@/atoms/chat/chats";
+import { activePdfIdAtom } from "@/atoms/pdf/pdf-viewer";
 
 interface ChatMessageListProps {
   className?: string;

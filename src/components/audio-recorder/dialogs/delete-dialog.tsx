@@ -1,4 +1,4 @@
-import { deleteRecordingAtom } from "@/actions/audio-recorder";
+import { deleteRecordingAtom } from "@/actions/recording/audio-recorder";
 import {
   AlertDialog,
   AlertDialogAction,

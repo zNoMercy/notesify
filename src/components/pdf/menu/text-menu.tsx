@@ -3,9 +3,9 @@ import { Sparkles } from "lucide-react";
 import { LuHighlighter } from "react-icons/lu";
 import { MdTranslate } from "react-icons/md";
 
-import { addContextAtom } from "@/actions/contexts";
-import { addHighlightAtom } from "@/actions/highlights";
-import { selectedHighlightColorAtom } from "@/atoms/highlight-options";
+import { addContextAtom } from "@/actions/chat/contexts";
+import { addHighlightAtom } from "@/actions/pdf/highlights";
+import { selectedHighlightColorAtom } from "@/atoms/pdf/highlight-options";
 import { TooltipButton } from "@/components/tooltip/tooltip-button";
 import { Separator } from "@/components/ui/separator";
 
@@ -14,7 +14,7 @@ import { HighlightOptions } from "./highlight-options";
 import { Menu } from "./menu";
 import { toast } from "sonner";
 import { generateId } from "@/lib/id";
-import { chatsOpenAtom } from "@/atoms/chats";
+import { chatsOpenAtom } from "@/atoms/chat/chats";
 
 export const TextMenu = ({
   pdfId,

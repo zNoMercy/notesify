@@ -1,5 +1,5 @@
-import { redoAtom, undoAtom } from "@/actions/history";
-import { activePdfIdAtom } from "@/atoms/pdf-viewer";
+import { redoAtom, undoAtom } from "@/actions/pdf/history";
+import { activePdfIdAtom } from "@/atoms/pdf/pdf-viewer";
 import { useAtomValue, useSetAtom } from "jotai";
 import { useHotkeys } from "react-hotkeys-hook";
 

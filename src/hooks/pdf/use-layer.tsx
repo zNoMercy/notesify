@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { getPage } from "@/lib/pdf/pages";
-import { activePdfIdAtom } from "@/atoms/pdf-viewer";
+import { activePdfIdAtom } from "@/atoms/pdf/pdf-viewer";
 import { useAtomValue } from "jotai";
 
 export interface LayerSize {
