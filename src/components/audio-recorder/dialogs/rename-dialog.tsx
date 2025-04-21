@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Recording } from "../audio-recorder";
+import { Recording } from "@/db/schema";
 import { renameRecordingAtom } from "@/actions/audio-recorder";
 import { useSetAtom } from "jotai";
 
@@ -40,7 +40,7 @@ export const RenameDialog = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent onClick={(e) => e.stopPropagation()}>
         <DialogHeader>
           <DialogTitle>Rename Recording</DialogTitle>
           <DialogDescription>
