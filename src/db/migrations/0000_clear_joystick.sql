@@ -95,3 +95,13 @@ CREATE TABLE `pdfs` (
 	`zoom` integer DEFAULT 1,
 	FOREIGN KEY (`id`) REFERENCES `files`(`id`) ON UPDATE no action ON DELETE cascade
 );
+--> statement-breakpoint
+CREATE TABLE `recordings` (
+	`id` text PRIMARY KEY NOT NULL,
+	`name` text NOT NULL,
+	`duration` integer NOT NULL,
+	`created_at` integer NOT NULL
+);
+--> statement-breakpoint
+CREATE INDEX `recordings_duration_idx` ON `recordings` (`duration`);--> statement-breakpoint
+CREATE INDEX `recordings_created_at_idx` ON `recordings` (`created_at`);

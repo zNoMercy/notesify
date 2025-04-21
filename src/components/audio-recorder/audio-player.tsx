@@ -9,12 +9,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { formatDuration } from "../../lib/audio/utils";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtomValue, useSetAtom } from "jotai";
 import {
   isPlayingAtom,
   currentTimeAtom,
   playbackSpeedAtom,
-  selectedRecordingAtom,
+  selectedRecordingIdAtom,
 } from "@/atoms/audio-recorder";
 import {
   playRecordingAtom,
@@ -26,10 +26,10 @@ import {
 import { GrBackTen, GrForwardTen } from "react-icons/gr";
 
 export const AudioPlayer = ({ duration }: { duration: number }) => {
-  const [isPlaying] = useAtom(isPlayingAtom);
-  const [currentTime] = useAtom(currentTimeAtom);
-  const [playbackSpeed] = useAtom(playbackSpeedAtom);
-  const [selectedRecording] = useAtom(selectedRecordingAtom);
+  const isPlaying = useAtomValue(isPlayingAtom);
+  const currentTime = useAtomValue(currentTimeAtom);
+  const playbackSpeed = useAtomValue(playbackSpeedAtom);
+  const selectedRecordingId = useAtomValue(selectedRecordingIdAtom);
 
   const playRecording = useSetAtom(playRecordingAtom);
   const changePlaybackTime = useSetAtom(changePlaybackTimeAtom);
@@ -38,8 +38,8 @@ export const AudioPlayer = ({ duration }: { duration: number }) => {
   const changePlaybackSpeed = useSetAtom(changePlaybackSpeedAtom);
 
   const handlePlayPause = () => {
-    if (selectedRecording) {
-      playRecording(selectedRecording);
+    if (selectedRecordingId) {
+      playRecording(selectedRecordingId);
     }
   };
   const speedOptions = [0.5, 0.75, 1, 1.25, 1.5, 2];

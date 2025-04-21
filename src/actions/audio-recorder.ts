@@ -3,13 +3,18 @@ import {
   recordingStateAtom,
   recordingTimeAtom,
   recordingsAtom,
-  selectedRecordingAtom,
   isPlayingAtom,
   currentTimeAtom,
   playbackSpeedAtom,
+  recordingDataAtomFamily,
+  RecordingData,
+  recordingAtomFamily,
+  selectedRecordingIdAtom,
 } from "@/atoms/audio-recorder";
-import { Recording } from "@/components/audio-recorder/audio-recorder";
 import { ActionError } from "@/hooks/state/use-action";
+import { generateId } from "@/lib/id";
+import { Recording } from "@/db/schema";
+import { RESET } from "jotai/utils";
 
 // Refs to be kept in components to maintain state
 let mediaRecorder: MediaRecorder | null = null;
@@ -50,7 +55,13 @@ export const cleanupAudioResourcesAtom = atom(null, () => {
 // Start recording
 export const startRecordingAtom = atom(null, async (get, set) => {
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true,
+      },
+    });
     mediaRecorder = new MediaRecorder(stream);
     const audioChunks: Blob[] = [];
     set(recordingTimeAtom, 0); // Reset recording time at start
@@ -60,22 +71,27 @@ export const startRecordingAtom = atom(null, async (get, set) => {
     };
 
     mediaRecorder.onstop = () => {
-      const audioBlob = new Blob(audioChunks, {
-        type: "audio/wav",
-      });
-      const audioUrl = URL.createObjectURL(audioBlob);
+      const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
       const finalDuration = Math.max(get(recordingTimeAtom), 1); // Ensure at least 1 second
 
-      const recordings = get(recordingsAtom);
+      const recordingId = generateId();
       const recording: Recording = {
-        id: Date.now().toString(),
-        name: `Recording ${recordings.length + 1}`,
-        url: audioUrl,
+        id: recordingId,
+        name: `New Recording`,
         duration: finalDuration,
         createdAt: new Date(),
       };
+      const recordingData: RecordingData = {
+        id: recordingId,
+        data: audioBlob,
+      };
 
-      set(recordingsAtom, [...recordings, recording]);
+      set(recordingAtomFamily(recordingId), recording);
+      set(recordingDataAtomFamily(recordingId), recordingData);
+      set(recordingsAtom, async (recordings) => [
+        ...(await recordings),
+        recording,
+      ]);
       set(recordingStateAtom, "inactive");
       set(recordingTimeAtom, 0);
 
@@ -142,63 +158,61 @@ export const resumeRecordingAtom = atom(null, (get, set) => {
 // Play/pause recording
 export const playRecordingAtom = atom(
   null,
-  (get, set, recording: Recording) => {
+  async (get, set, recordingId: string) => {
     if (!audioElement) {
       set(initializeAudioPlayerAtom);
       audioElement = new Audio();
     }
-
-    const selectedRecording = get(selectedRecordingAtom);
+    const selectedRecordingId = get(selectedRecordingIdAtom);
     const isPlaying = get(isPlayingAtom);
-    const playbackSpeed = get(playbackSpeedAtom);
 
-    // If the same recording is already playing, pause it
-    if (selectedRecording?.id === recording.id && isPlaying) {
+    if (selectedRecordingId === recordingId && isPlaying) {
       audioElement.pause();
       set(isPlayingAtom, false);
       return;
     }
 
-    // If a different recording is selected
-    if (selectedRecording?.id !== recording.id) {
-      set(selectedRecordingAtom, recording);
-      audioElement.src = recording.url;
-      audioElement.playbackRate = playbackSpeed;
-      set(currentTimeAtom, 0);
-    }
+    const recordingData = await get(recordingDataAtomFamily(recordingId));
+    if (!recordingData) return;
 
-    // Play the selected recording
+    const url = URL.createObjectURL(recordingData.data);
+    audioElement.src = url;
     audioElement.play();
+    set(currentTimeAtom, 0);
+    set(selectedRecordingIdAtom, recordingId);
     set(isPlayingAtom, true);
   }
 );
 
 // Change playback time
 export const changePlaybackTimeAtom = atom(null, (get, set, time: number) => {
-  const selectedRecording = get(selectedRecordingAtom);
-  if (audioElement && selectedRecording) {
+  const selectedRecordingId = get(selectedRecordingIdAtom);
+  if (audioElement && selectedRecordingId) {
     audioElement.currentTime = time;
     set(currentTimeAtom, time);
   }
 });
 
 // Skip forward
-export const skipForwardAtom = atom(null, (get, set) => {
-  const selectedRecording = get(selectedRecordingAtom);
-  if (audioElement && selectedRecording) {
-    const newTime = Math.min(
-      audioElement.currentTime + 10,
-      selectedRecording.duration
-    );
+export const skipForwardAtom = atom(null, async (get, set) => {
+  const selectedRecordingId = get(selectedRecordingIdAtom);
+  if (!selectedRecordingId) return;
+
+  const recording = await get(recordingAtomFamily(selectedRecordingId));
+  if (audioElement && recording) {
+    const newTime = Math.min(audioElement.currentTime + 10, recording.duration);
     audioElement.currentTime = newTime;
     set(currentTimeAtom, newTime);
   }
 });
 
 // Skip backward
-export const skipBackwardAtom = atom(null, (get, set) => {
-  const selectedRecording = get(selectedRecordingAtom);
-  if (audioElement && selectedRecording) {
+export const skipBackwardAtom = atom(null, async (get, set) => {
+  const selectedRecordingId = get(selectedRecordingIdAtom);
+  if (!selectedRecordingId) return;
+
+  const recording = await get(recordingAtomFamily(selectedRecordingId));
+  if (audioElement && recording) {
     const newTime = Math.max(audioElement.currentTime - 10, 0);
     audioElement.currentTime = newTime;
     set(currentTimeAtom, newTime);
@@ -215,48 +229,40 @@ export const changePlaybackSpeedAtom = atom(null, (get, set, speed: number) => {
 
 // Delete recording
 export const deleteRecordingAtom = atom(null, (get, set) => {
-  const selectedRecording = get(selectedRecordingAtom);
+  const selectedRecordingId = get(selectedRecordingIdAtom);
   const isPlaying = get(isPlayingAtom);
 
-  if (selectedRecording) {
-    // Stop playing if the deleted recording is the one being played
-    if (audioElement && isPlaying) {
-      audioElement.pause();
-      set(isPlayingAtom, false);
-    }
+  if (!selectedRecordingId) return;
 
-    // Remove the recording from the list
-    const recordings = get(recordingsAtom);
-    set(
-      recordingsAtom,
-      recordings.filter((rec) => rec.id !== selectedRecording.id)
-    );
-
-    // Clear selection
-    set(selectedRecordingAtom, null);
+  // Stop playing if the deleted recording is the one being played
+  if (audioElement && isPlaying) {
+    audioElement.pause();
+    set(isPlayingAtom, false);
   }
+
+  set(recordingDataAtomFamily(selectedRecordingId), RESET);
+  set(recordingsAtom, async (recordings) =>
+    (await recordings).filter((rec) => rec.id !== selectedRecordingId)
+  );
+  set(selectedRecordingIdAtom, null);
 });
 
 // Rename recording
-export const renameRecordingAtom = atom(null, (get, set, newName: string) => {
-  const selectedRecording = get(selectedRecordingAtom);
-  const recordings = get(recordingsAtom);
+export const renameRecordingAtom = atom(
+  null,
+  async (get, set, newName: string) => {
+    const selectedRecordingId = get(selectedRecordingIdAtom);
+    if (!selectedRecordingId) return;
 
-  if (selectedRecording) {
-    set(
-      recordingsAtom,
-      recordings.map((rec) =>
-        rec.id === selectedRecording.id ? { ...rec, name: newName } : rec
-      )
-    );
+    const recording = await get(recordingAtomFamily(selectedRecordingId));
+    if (!recording) return;
 
-    // Update the selected recording
-    set(
-      selectedRecordingAtom,
-      selectedRecording ? { ...selectedRecording, name: newName } : null
-    );
+    set(recordingAtomFamily(selectedRecordingId), {
+      ...recording,
+      name: newName,
+    });
   }
-});
+);
 
 // Close audio recorder
 export const closeAudioRecorderAtom = atom(
