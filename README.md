@@ -18,6 +18,7 @@ Desktop/mobile apps will be available when the app is more stable.
 - 🚀 Custom AI model endpoints
 - 💬 Chat with PDF sources
 - 📝 Feature-rich notes editor
+- 🎙️ Audio recording and AI transcription
 - 🌐 Cross-platform (Windows, macOS, Linux, Android, iOS)
 - ⭐ Open source!
 
@@ -40,8 +41,12 @@ Desktop/mobile apps will be available when the app is more stable.
   - [ ] TTS/STT model
   - [ ] Text embedding model
   - [ ] Vector database
+- [x] PDF reader
+  - [x] Annotate with pen and highlighter (with stylus support)
 - [x] Notes editor
-- [x] PDF annotations (pen and highlighter)
+- [x] Audio recorder
+  - [x] Record and replay audio
+  - [ ] Transcribe audio
 - [ ] Library
   - [ ] Folders
   - [ ] Tagging
